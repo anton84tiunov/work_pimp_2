@@ -1,0 +1,296 @@
+Project Structure:
+./
+├── .vscode/
+│   ├── settings.json
+├── HELP/
+│   ├── 100юече
+│   ├── Backend/
+│   │   ├── create_app.txt
+│   │   ├── db_schema_1.txt
+│   │   ├── напоминалки_gpt.txt
+│   ├── Frontend/
+│   │   ├── 1.txtx
+│   │   ├── 100entity.txt
+│   │   ├── 2.txt
+│   │   ├── 3.txt
+│   │   ├── create_app.txt
+│   ├── gpt/
+│   │   ├── 1.txt
+│   │   ├── 2.txt
+│   │   ├── 33333333333
+│   │   ├── 4.txt
+│   │   ├── 5.txt
+│   │   ├── github.txt
+│   │   ├── table_1.txt/
+│   │       ├── api.txt
+│   │       ├── model.tt
+│   │       ├── modelJs.txt
+│   ├── тесты
+├── PYTHON_SCRIPTS/
+│   ├── create_project_snapshot.py
+│   ├── create_project_snapshot2.py
+├── backend/
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── src/
+│   │   ├── MainRouter.ts
+│   │   ├── api/
+│   │   │   ├── controllers/
+│   │   │   │   ├── applications/
+│   │   │   │   │   ├── ApplicationController.ts
+│   │   │   │   ├── certifications/
+│   │   │   │   │   ├── CertificationController.ts
+│   │   │   │   ├── educations/
+│   │   │   │   │   ├── EducationController.ts
+│   │   │   │   ├── experiences/
+│   │   │   │   │   ├── ExperienceController.ts
+│   │   │   │   ├── languages/
+│   │   │   │   │   ├── LanguageController.ts
+│   │   │   │   ├── locations/
+│   │   │   │   │   ├── LocationController.ts
+│   │   │   │   ├── matches/
+│   │   │   │   │   ├── MatchesController.ts
+│   │   │   │   ├── notificationTypes/
+│   │   │   │   │   ├── NotificationTypeController.ts
+│   │   │   │   ├── notifications/
+│   │   │   │   │   ├── NotificationsController.ts
+│   │   │   │   ├── resumeSkills/
+│   │   │   │   │   ├── ResumeSkillsController.ts
+│   │   │   │   ├── resumes/
+│   │   │   │   │   ├── ResumesController.ts
+│   │   │   │   ├── skills/
+│   │   │   │   │   ├── SkillController.ts
+│   │   │   │   ├── users/
+│   │   │   │   │   ├── UserController.ts
+│   │   │   │   ├── vacancies/
+│   │   │   │   │   ├── VacancyController.ts
+│   │   │   │   ├── vacancySkills/
+│   │   │   │       ├── VacancySkillsController.ts
+│   │   │   ├── routes/
+│   │   │   │   ├── ApplicationRoutes.ts
+│   │   │   │   ├── CertificationRouter.ts
+│   │   │   │   ├── EducationRouter.ts
+│   │   │   │   ├── ExperienceRouter.ts
+│   │   │   │   ├── LanguageRouter.ts
+│   │   │   │   ├── LocationRouter.ts
+│   │   │   │   ├── MatchesRouter.ts
+│   │   │   │   ├── NotificationTypeRouter.ts
+│   │   │   │   ├── NotificationsRouter.ts
+│   │   │   │   ├── ResumeSkillsRouter.ts
+│   │   │   │   ├── ResumesRouter.ts
+│   │   │   │   ├── SkillRouter.ts
+│   │   │   │   ├── UserRouter.ts
+│   │   │   │   ├── VacancyRouter.ts
+│   │   │   │   ├── VacancySkillsRouter.ts
+│   │   │   ├── utils/
+│   │   │       ├── validators/
+│   │   │           ├── Validator.ts
+│   │   │           ├── applications/
+│   │   │           │   ├── ApplicationValidator.ts
+│   │   │           ├── certifications/
+│   │   │           │   ├── CertificationValidator.ts
+│   │   │           ├── educations/
+│   │   │           │   ├── EducationValidator.ts
+│   │   │           ├── experiences/
+│   │   │           │   ├── ExperienceValidator.ts
+│   │   │           ├── languages/
+│   │   │           │   ├── LanguageValidator.ts
+│   │   │           ├── locations/
+│   │   │           │   ├── LocationValidator.ts
+│   │   │           ├── matches/
+│   │   │           │   ├── MatchValidator.ts
+│   │   │           ├── notificationTypes/
+│   │   │           │   ├── NotificationTypeValidator.ts
+│   │   │           ├── notifications/
+│   │   │           │   ├── NotificationValidator.ts
+│   │   │           ├── resumeSkills/
+│   │   │           │   ├── ResumeSkillsValidator.ts
+│   │   │           ├── resumes/
+│   │   │           │   ├── ResumeValidator.ts
+│   │   │           ├── skills/
+│   │   │           │   ├── SkillValidator.ts
+│   │   │           ├── users/
+│   │   │           │   ├── UserValidator.ts
+│   │   │           ├── vacancies/
+│   │   │           │   ├── VacancyValidator.ts
+│   │   │           ├── vacancySkills/
+│   │   │               ├── VacancySkillsValidator.ts
+│   │   ├── configs/
+│   │   │   ├── app-data-source.ts
+│   │   │   ├── jwt-config.ts
+│   │   ├── core/
+│   │   │   ├── entities/
+│   │   │   │   ├── ApplicationEntity.ts
+│   │   │   │   ├── CertificationEntity.ts
+│   │   │   │   ├── EducationEntity.ts
+│   │   │   │   ├── ExperienceEntity.ts
+│   │   │   │   ├── LanguageEntity.ts
+│   │   │   │   ├── LocationEntity.ts
+│   │   │   │   ├── MatchEntity.ts
+│   │   │   │   ├── NotificationEntity.ts
+│   │   │   │   ├── NotificationTypeEntity.ts
+│   │   │   │   ├── ResumeEntity.ts
+│   │   │   │   ├── ResumeSkillsEntity.ts
+│   │   │   │   ├── SkillEntity.ts
+│   │   │   │   ├── UserEntity.ts
+│   │   │   │   ├── VacancyEntity.ts
+│   │   │   │   ├── VacancySkillsEntity.ts
+│   │   │   ├── repositories/
+│   │   │   │   ├── applications/
+│   │   │   │   │   ├── ApplicationRepository.ts
+│   │   │   │   ├── certifications/
+│   │   │   │   │   ├── CertificationRepository.ts
+│   │   │   │   ├── educations/
+│   │   │   │   │   ├── EducationRepository.ts
+│   │   │   │   ├── experiences/
+│   │   │   │   │   ├── ExperienceRepository.ts
+│   │   │   │   ├── languages/
+│   │   │   │   │   ├── LanguageRepository.ts
+│   │   │   │   ├── locations/
+│   │   │   │   │   ├── LocationRepository.ts
+│   │   │   │   ├── matches/
+│   │   │   │   │   ├── MatchRepository.ts
+│   │   │   │   ├── notificationTypes/
+│   │   │   │   │   ├── NotificationTypeRepository.ts
+│   │   │   │   ├── notifications/
+│   │   │   │   │   ├── NotificationRepository.ts
+│   │   │   │   ├── resumeSkills/
+│   │   │   │   │   ├── ResumeSkillsRepository.ts
+│   │   │   │   ├── resumes/
+│   │   │   │   │   ├── ResumeRepository.ts
+│   │   │   │   ├── skills/
+│   │   │   │   │   ├── SkillRepository.ts
+│   │   │   │   ├── users/
+│   │   │   │   │   ├── UserRepository.ts
+│   │   │   │   ├── vacancies/
+│   │   │   │   │   ├── VacancyRepository.ts
+│   │   │   │   ├── vacancySkills/
+│   │   │   │       ├── VacancySkillsRepository.ts
+│   │   │   ├── services/
+│   │   │       ├── applications/
+│   │   │       │   ├── ApplicationService.ts
+│   │   │       ├── certifications/
+│   │   │       │   ├── CertificationService.ts
+│   │   │       ├── educations/
+│   │   │       │   ├── EducationService.ts
+│   │   │       ├── experiences/
+│   │   │       │   ├── ExperienceService.ts
+│   │   │       ├── languages/
+│   │   │       │   ├── LanguageService.ts
+│   │   │       ├── locations/
+│   │   │       │   ├── LocationService.ts
+│   │   │       ├── matches/
+│   │   │       │   ├── MatchService.ts
+│   │   │       ├── notificationTypes/
+│   │   │       │   ├── NotificationTypeService.ts
+│   │   │       ├── notifications/
+│   │   │       │   ├── NotificationService.ts
+│   │   │       ├── resumeSkills/
+│   │   │       │   ├── ResumeSkillsService.ts
+│   │   │       ├── resumes/
+│   │   │       │   ├── ResumeService.ts
+│   │   │       ├── skills/
+│   │   │       │   ├── SkillService.ts
+│   │   │       ├── users/
+│   │   │       │   ├── UserService.ts
+│   │   │       ├── vacancies/
+│   │   │       │   ├── VacancyService.ts
+│   │   │       ├── vacancySkills/
+│   │   │           ├── VacancySkillsService.ts
+│   │   ├── index.ts
+│   │   ├── migration/
+│   │   ├── subscriber/
+│   │   ├── utils/
+│   │       ├── errorHandler.ts
+│   │       ├── logger.ts
+│   ├── tsconfig.json
+├── frontend/
+│   ├── .gitignore
+│   ├── README.md
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public/
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   ├── src/
+│   │   ├── App.css
+│   │   ├── App.test.tsx
+│   │   ├── App.tsx
+│   │   ├── components/
+│   │   │   ├── common/
+│   │   │   │   ├── button/
+│   │   │   │   │   ├── Button.tsx
+│   │   │   │   ├── div/
+│   │   │   │   │   ├── Div.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── input/
+│   │   │   │   │   ├── Input.tsx
+│   │   │   │   ├── label/
+│   │   │   │   │   ├── Label.tsx
+│   │   │   │   ├── span/
+│   │   │   │   │   ├── Span.tsx
+│   │   │   │   ├── table/
+│   │   │   │   │   ├── Table.tsx
+│   │   │   │   │   ├── caption/
+│   │   │   │   │   │   ├── Caption.tsx
+│   │   │   │   │   ├── tbody/
+│   │   │   │   │   │   ├── Tbody.tsx
+│   │   │   │   │   ├── td/
+│   │   │   │   │   │   ├── Td.tsx
+│   │   │   │   │   ├── th/
+│   │   │   │   │   │   ├── Th.tsx
+│   │   │   │   │   ├── tr/
+│   │   │   │   │       ├── Tr.tsx
+│   │   │   │   ├── ul/
+│   │   │   │       ├── Ul.tsx
+│   │   │   │       ├── li/
+│   │   │   │           ├── Li.tsx
+│   │   │   ├── forms/
+│   │   │   │   ├── auth/
+│   │   │   │       ├── RegistrationForm.tsx
+│   │   │   ├── layouts/
+│   │   │   │   ├── MainLayout/
+│   │   │   │       ├── Aside.tsx
+│   │   │   │       ├── Footer.tsx
+│   │   │   │       ├── Header.css
+│   │   │   │       ├── Header.tsx
+│   │   │   │       ├── Main.tsx
+│   │   │   │       ├── index.tsx
+│   │   │   ├── pages/
+│   │   │       ├── Home/
+│   │   │       │   ├── index.tsx
+│   │   │       ├── Profile/
+│   │   │       │   ├── Profile.tsx
+│   │   │       │   ├── profile.css
+│   │   │       ├── TodoList/
+│   │   │           ├── index.tsx
+│   │   ├── contexts/
+│   │   ├── hooks/
+│   │   ├── index.css
+│   │   ├── index.tsx
+│   │   ├── logo.svg
+│   │   ├── react-app-env.d.ts
+│   │   ├── redux/
+│   │   │   ├── actions/
+│   │   │   │   ├── profileActions.ts
+│   │   │   │   ├── todoActions.ts
+│   │   │   ├── reducers/
+│   │   │   │   ├── profilesSlice.ts
+│   │   │   │   ├── rootReducer.ts
+│   │   │   │   ├── todosSlice.ts
+│   │   │   ├── store.ts
+│   │   ├── reportWebVitals.ts
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── setupTests.ts
+│   │   ├── types/
+│   │   │   ├── Profile.ts
+│   │   ├── utils/
+│   ├── tsconfig.json
+├── project_snapshot.txt
+├── project_snapshot2.txt
+

@@ -1,0 +1,977 @@
+Project Structure:
+src/
+├── App.css
+├── App.test.tsx
+├── App.tsx
+├── components/
+│   ├── common/
+│   │   ├── button/
+│   │   │   ├── Button.tsx
+│   │   ├── div/
+│   │   │   ├── Div.tsx
+│   │   ├── index.ts
+│   │   ├── input/
+│   │   │   ├── Input.tsx
+│   │   ├── label/
+│   │   │   ├── Label.tsx
+│   │   ├── li/
+│   │   │   ├── Li.tsx
+│   │   ├── span/
+│   │   │   ├── Span.tsx
+│   │   ├── ul/
+│   │       ├── Ul.tsx
+│   ├── layouts/
+│   │   ├── MainLayout/
+│   │       ├── Aside.tsx
+│   │       ├── Footer.tsx
+│   │       ├── Header.css
+│   │       ├── Header.tsx
+│   │       ├── Main.tsx
+│   │       ├── index.tsx
+│   ├── pages/
+│       ├── Home/
+│       │   ├── index.tsx
+│       ├── Profile/
+│       │   ├── Profile.tsx
+│       │   ├── profile.css
+│       ├── TodoList/
+│           ├── index.tsx
+├── contexts/
+├── hooks/
+├── index.css
+├── index.tsx
+├── logo.svg
+├── react-app-env.d.ts
+├── redux/
+│   ├── actions/
+│   │   ├── profileActions.ts
+│   │   ├── todoActions.ts
+│   ├── reducers/
+│   │   ├── profilesSlice.ts
+│   │   ├── rootReducer.ts
+│   │   ├── todosSlice.ts
+│   ├── store.ts
+├── reportWebVitals.ts
+├── routes/
+├── services/
+├── setupTests.ts
+├── types/
+│   ├── Profile.ts
+├── utils/
+
+File: index.css
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+File: reportWebVitals.ts
+import { ReportHandler } from 'web-vitals';
+
+const reportWebVitals = (onPerfEntry?: ReportHandler) => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+
+File: App.test.tsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+
+File: react-app-env.d.ts
+
+
+
+File: index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(<App />);
+
+
+File: App.tsx
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+import MainLayout from './components/layouts/MainLayout';
+
+const App: React.FC = () => {
+  return (
+    <Provider store={store}>
+      <Router>
+        <MainLayout />
+      </Router>
+    </Provider>
+  );
+};
+
+export default App;
+
+
+File: App.css
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+File: setupTests.ts
+import '@testing-library/jest-dom';
+
+
+File: logo.svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3"><g fill="#61DAFB"><path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/><circle cx="420.9" cy="296.5" r="45.7"/><path d="M520.5 78.1z"/></g></svg>
+
+File: redux/store.ts
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers/rootReducer';
+
+const store = configureStore({
+  reducer: rootReducer,
+
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export default store;
+
+File: redux/actions/todoActions.ts
+import { createAction } from '@reduxjs/toolkit';
+
+export const addTodo = createAction<string>('ADD_TODO');
+export const removeTodo = createAction<string>('REMOVE_TODO');
+export const updateTodo = createAction<{ id: string; text: string }>('UPDATE_TODO');
+export const setNewTodo = createAction<string>('SET_NEW_TODO');
+export const setEditTodo = createAction<{ id: string; text: string }>('SET_EDIT_TODO');
+export const clearEditTodo = createAction('CLEAR_EDIT_TODO');
+
+
+
+File: redux/actions/profileActions.ts
+import { createAction } from '@reduxjs/toolkit';
+
+export const addProfile = createAction<{
+    id: string;
+    name: string;
+    age: number;
+    email: string;
+    phone: number;
+    password: string;
+    completed: boolean;
+}>('ADD_PROFILE');
+export const removeProfile = createAction<string>('REMOVE_PROFILE');
+export const selectProfile = createAction<{
+    id: string;
+    name: string;
+    age: number;
+    email: string;
+    phone: number;
+    password: string;
+    completed: boolean;
+}>('SELECT_PROFILE');
+
+export const updateProfile = createAction<{
+    id: string;
+    name?: string;
+    age?: number;
+    email?: string;
+    phone?: number;
+    password?: string;
+    completed?: boolean;
+}>('UPDATE_PROFILE');
+
+File: redux/reducers/todosSlice.ts
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+interface Todo {
+  text: string; 
+  completed: boolean; 
+}
+
+interface TodoState {
+  todos: { [id: string]: Todo }; 
+  newTodo: string; 
+  editTodo: string; 
+  editTodoId: string; 
+}
+
+const initialState: TodoState = {
+  todos: {}, 
+  newTodo: '', 
+  editTodo: '', 
+  editTodoId: '', 
+};
+
+const todoSlice = createSlice({
+  name: 'todos', 
+  initialState, 
+  reducers: {
+    addTodo: (state, action: PayloadAction<string>) => {
+      const newTodo = action.payload; 
+      const id = Date.now().toString(); 
+      state.todos[id] = { text: newTodo, completed: false }; 
+      state.newTodo = ''; 
+      console.log("Added to todo: " + id.toString() + " " + state.todos[id].text + " " + state.todos[id].completed);
+    },
+    removeTodo: (state, action: PayloadAction<string>) => {
+      const id = action.payload; 
+      console.log("Removed from todo: " + id.toString() + " " + state.todos[id].text + " " + state.todos[id].completed);
+      delete state.todos[id]; 
+    },
+    updateTodo: (state, action: PayloadAction<{ id: string; text: string }>) => {
+      const { id, text } = action.payload; 
+      state.todos[id] = { ...state.todos[id], text }; 
+      state.editTodo = ''; 
+      state.editTodoId = ''; 
+      console.log("Updated todo: " + id.toString() + " " + state.todos[id].text + " " + state.todos[id].completed);
+    },
+    setNewTodo: (state, action: PayloadAction<string>) => {
+      state.newTodo = action.payload; 
+    },
+    setEditTodo: (state, action: PayloadAction<{ id: string; text: string }>) => {
+      const { id, text } = action.payload; 
+      state.editTodo = text; 
+      state.editTodoId = id; 
+      console.log("Set edit todo: " + id.toString() + " " + state.todos[id].text + " " + state.todos[id].completed);
+    },
+    clearEditTodo: (state) => {
+      state.editTodo = ''; 
+      state.editTodoId = ''; 
+      console.log("Cleared edit todo: " + state.editTodoId.toString() + " " + state.todos[state.editTodoId].text + " " + state.todos[state.editTodoId].completed);
+    },
+    toggleTodo: (state, action: PayloadAction<string>) => {
+      const id = action.payload; 
+      const todo = state.todos[id]; 
+      if (todo) {
+        state.todos[id] = { ...todo, completed: !todo.completed }; 
+      }
+      console.log("Toggled todo: " + id.toString() + " " + state.todos[id].text + " " + state.todos[id].completed);
+    },
+  },
+});
+
+export const { addTodo, removeTodo, updateTodo, setNewTodo, setEditTodo, clearEditTodo, toggleTodo } = todoSlice.actions;
+
+export default todoSlice.reducer;
+
+File: redux/reducers/rootReducer.ts
+import { combineReducers } from '@reduxjs/toolkit';
+import todosReducer from './todosSlice';
+import profileReducer from './profilesSlice';
+
+const rootReducer = combineReducers({
+  todos: todosReducer,
+  profiles: profileReducer,
+});
+
+export default rootReducer;
+
+File: redux/reducers/profilesSlice.ts
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ProfileInterfase } from '../../types/Profile';
+
+interface ProfileState {
+    profiles: { [id: string]: ProfileInterfase }; 
+    newProfile: ProfileInterfase; 
+    editProfile: ProfileInterfase;
+    editProfileId: string; 
+  }
+  const initialState: ProfileState = {
+    profiles: {},
+    newProfile: { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false },
+    editProfile: { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false },
+    editProfileId: ''
+  };
+const profilesSlice = createSlice({
+  name: 'profiles',
+  initialState,
+  reducers: {
+    addProfile: (state, action: PayloadAction<ProfileInterfase>) => {
+      const newProfile = action.payload;
+      const id = Date.now().toString();
+      const profileWithId = { ...newProfile, id }; 
+      state.profiles[id] = profileWithId;
+      state.newProfile = { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false };
+      console.log("Added to profile: " + id.toString() + " " + state.profiles[id].name + " " + state.profiles[id].completed);
+    },
+    removeProfile: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      delete state.profiles[id];
+    },
+    updateProfile: (state, action: PayloadAction<ProfileInterfase>) => {
+      const updatedProfile = action.payload;
+      const id = updatedProfile.id; 
+      state.profiles[id] = updatedProfile;
+      state.editProfile = { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false };
+      state.editProfileId = '';
+    },
+    selectProfileForEdit: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      const selectedProfile = state.profiles[id];
+      if (selectedProfile) {
+        state.editProfile = selectedProfile;
+        state.editProfileId = id;
+      }
+    },
+  },
+});
+
+export const { addProfile, removeProfile, updateProfile, selectProfileForEdit } = profilesSlice.actions;
+export default profilesSlice.reducer;
+
+File: types/Profile.ts
+export interface ProfileInterfase {
+    id: string; 
+    name: string;
+    age: number;
+    email: string;
+    phone: number;
+    password: string;
+    completed: boolean;
+  }
+
+File: components/layouts/MainLayout/Main.tsx
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from '../../pages/Home';
+import Profile from '../../pages/Profile/Profile';
+import TodoList from '../../pages/TodoList';
+
+const Main: React.FC = () => {
+  return (
+    <main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/todos" element={<TodoList />} />
+      </Routes>
+    </main>
+  );
+};
+
+export default Main;
+
+File: components/layouts/MainLayout/Header.tsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Header.css'; // Import the CSS file
+
+const Header: React.FC = () => {
+  return (
+    <header className="header">
+      <nav className="nav">
+        <ul className="nav-list">
+          <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
+          <li className="nav-item"><Link to="/profile" className="nav-link">profile</Link></li>
+          <li className="nav-item"><Link to="/todos" className="nav-link">todo</Link></li>
+        </ul>
+      </nav>
+    </header>
+  )
+}
+
+export default Header;
+
+File: components/layouts/MainLayout/Footer.tsx
+import React from 'react';
+
+const Footer: React.FC = () => {
+  return <footer>Footer</footer>;
+};
+
+export default Footer;
+
+File: components/layouts/MainLayout/Aside.tsx
+import React from 'react';
+
+const Aside: React.FC = () => {
+  return <aside>Aside</aside>;
+};
+
+export default Aside;
+
+File: components/layouts/MainLayout/Header.css
+.header {
+  background-color: #333;
+  padding: 1rem;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-item {
+  margin: 0 1rem;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ccc;
+}
+
+File: components/layouts/MainLayout/index.tsx
+import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Aside from './Aside';
+import Main from './Main';
+import { Div } from '../../common';
+
+const MainLayout: React.FC = () => {
+  return (
+    <Div>
+      <Header />
+      <Div style={{ display: 'flex' }}>
+        <Aside />
+        <Main />
+      </Div>
+      <Footer />
+    </Div>
+  );
+};
+
+export default MainLayout;
+
+File: components/pages/Profile/profile.css
+td, th{
+    border: 1px solid black;
+}
+
+File: components/pages/Profile/Profile.tsx
+import React, { useState } from 'react';
+import { Button, Div, Input, Span } from '../../common';
+import { useDispatch, useSelector } from 'react-redux';
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { addProfile, updateProfile } from '../../../redux/reducers/profilesSlice';
+import { RootState } from '../../../redux/store';
+import { ProfileInterfase } from '../../../types/Profile';
+import './profile.css';
+
+const Profile: React.FC = () => {
+  const dispatch = useDispatch();
+  const profiles = useSelector((state: RootState) => state.profiles.profiles);
+  const newProfile = useSelector((state: RootState) => state.profiles.newProfile);
+  // const setProfileFIndId = useSelector((state: RootState) => state.profiles.editProfileId);
+
+  const [name, setName] = useState('');
+  const [age, setAge] = useState(0);
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState(0);
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const handleAddProfile = () => {
+    // const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;&& emailRegex.test(email)
+    if (name && age && email && phone && password) {
+      const updatedProfile = {
+        ...newProfile,
+        name,
+        age,
+        email,
+        phone,
+        password,
+      };
+      dispatch(addProfile(updatedProfile));
+      setName('');
+      setAge(0);
+      setEmail('');
+      setPhone(0);
+      setPassword('');
+      setEmailError('');
+    // } else if (!emailRegex.test(email)) {
+    //   setEmailError('Неверный формат электронной почты');
+    }
+  };
+
+  const handleEditProfile = (field: string, value: string | number, profile: ProfileInterfase) => {
+    const updatedProfile = { ...profile };
+    switch (field) {
+      case "name":
+        updatedProfile.name = String(value);
+        break;
+      case "age":
+        updatedProfile.age = Number(value);
+        break;
+      case "email":
+        updatedProfile.email = String(value);
+        break;
+      case "phone":
+        updatedProfile.phone = Number(value);
+        break;
+      case "password":
+        updatedProfile.password = String(value);
+        break;
+      default:
+        break;
+    }
+    dispatch(updateProfile(updatedProfile));
+  };
+
+  return (
+    <Div>
+      <h2>Profile</h2>
+      <Span>name</Span>
+      <Input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="name"
+      />
+      <br />
+      <Span>age</Span>
+      <Input
+        type="number"
+        value={age}
+        onChange={(e) => setAge(Number(e.target.value))}
+        placeholder="age"
+      />
+      <br />
+      <Span>email</Span>
+      <Input
+        type="text"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="email"
+      />
+      {emailError && <Span style={{ color: 'red' }}>{emailError}</Span>}
+      <br />
+      <Span>phone</Span>
+      <Input
+        type="number"
+        value={phone}
+        onChange={(e) => setPhone(Number(e.target.value))}
+        placeholder="phone"
+      />
+      <br />
+      <Span>password</Span>
+      <Input
+        type="text"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="password"
+      />
+      <br />
+      <Button onClick={handleAddProfile}>Add</Button>
+      <br />
+      <h3>Список профилей:</h3>
+      <table>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+          <th>email</th>
+          <th>phone</th>
+          <th>password</th>
+        </tr>
+      {Object.entries(profiles).map(([id, profile]) => (
+        <tr>
+          <td>{profile.id}</td>
+          <td><Input onChange={(e) => handleEditProfile('name', profile.name, profile)} type="text" value={profile.name} /></td>
+          <td><Input onChange={(e) => handleEditProfile('age', profile.age, profile)} type="number" value={profile.age} /></td>
+          <td><Input onChange={(e) => handleEditProfile('email', profile.email, profile)} type="text" value={profile.email} /></td>
+          <td><Input onChange={(e) => handleEditProfile('phone', profile.phone, profile)} type="number" value={profile.phone} /></td>
+          <td><Input onChange={(e) => handleEditProfile('password', profile.password, profile)} type="text" value={profile.password} /></td>
+
+          <td>
+            <Button onClick={() => console.log("Edit")}><AiOutlineCheck/></Button>
+          </td>
+          <td>
+            <Button onClick={() => console.log("remove")}><AiOutlineClose/></Button>
+          </td>
+        </tr>
+
+        ))}
+      </table>
+    </Div>
+  );
+};
+
+export default Profile;
+
+File: components/pages/TodoList/index.tsx
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addTodo,
+  removeTodo,
+  toggleTodo,
+  setNewTodo,
+  setEditTodo,
+  updateTodo,
+  clearEditTodo,
+} from '../../../redux/reducers/todosSlice';
+import { RootState } from '../../../redux/store';
+import { Button, Input, Div, Li, Span, Ul } from '../../common';
+
+const TodoList: React.FC = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state: RootState) => state.todos.todos);
+  const newTodo = useSelector((state: RootState) => state.todos.newTodo);
+  const editTodo = useSelector((state: RootState) => state.todos.editTodo);
+  const editTodoId = useSelector((state: RootState) => state.todos.editTodoId);
+
+  const handleAddTodo = () => {
+    if (newTodo.trim()) {
+      dispatch(addTodo(newTodo));
+    }
+  };
+
+  const handleRemoveTodo = (id: string) => {
+    dispatch(removeTodo(id));
+  };
+
+  const handleToggleTodo = (id: string) => {
+    dispatch(toggleTodo(id));
+  };
+
+  const handleEditTodo = (id: string, text: string) => {
+    dispatch(setEditTodo({ id, text }));
+  };
+
+  const handleUpdateTodo = (id: string, text: string) => {
+    dispatch(updateTodo({ id, text }));
+  };
+
+  const handleNewTodoChange = (value: string) => {
+    dispatch(setNewTodo(value));
+  };
+
+  const handleEditTodoChange = (value: string) => {
+    dispatch(setEditTodo({ id: editTodoId, text: value }));
+  };
+
+  const handleCancelEdit = () => {
+    dispatch(clearEditTodo());
+  };
+
+  return (
+    <Div>
+      <h2>Todo List</h2>
+      <Div>
+        <Input
+          type="text"
+          value={newTodo}
+          onChange={(e) => handleNewTodoChange(e.target.value)}
+          placeholder="Add a new todo"
+        />
+        <Button onClick={handleAddTodo}>Add</Button>
+      </Div>
+      <Ul>
+        {Object.entries(todos).map(([id, todo]) => (
+          <Li key={id}>
+            {editTodoId === id ? (
+              <Div>
+                <Input
+                  type="text"
+                  value={editTodo}
+                  onChange={(e) => handleEditTodoChange(e.target.value)}
+                />
+                <Button onClick={() => handleUpdateTodo(id, editTodo)}>
+                  Update
+                </Button>
+                <Button onClick={handleCancelEdit}>Cancel</Button>
+              </Div>
+            ) : (
+              <Div>
+                <Input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => handleToggleTodo(id)}
+                />
+                <Span
+                  style={{
+                    textDecoration: todo.completed ? 'line-through' : 'none',
+                  }}
+                >
+                  {todo.text}
+                </Span>
+                <Button onClick={() => handleRemoveTodo(id)}>Remove</Button>
+                <Button onClick={() => handleEditTodo(id, todo.text)}>Edit</Button>
+              </Div>
+            )}
+          </Li>
+        ))}
+      </Ul>
+    </Div>
+  );
+};
+
+export default TodoList;
+
+File: components/pages/Home/index.tsx
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addTodo,
+  removeTodo,
+  toggleTodo,
+  setNewTodo,
+  setEditTodo,
+  updateTodo,
+} from '../../../redux/reducers/todosSlice';
+import { RootState } from '../../../redux/store';
+import { Button, Div, Input, Li, Span, Ul } from '../../common';
+
+const Home: React.FC = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state: RootState) => state.todos.todos);
+  const newTodo = useSelector((state: RootState) => state.todos.newTodo);
+  const editTodo = useSelector((state: RootState) => state.todos.editTodo);
+  const editTodoId = useSelector((state: RootState) => state.todos.editTodoId);
+
+  const handleAddTodo = () => {
+    if (newTodo.trim()) {
+      dispatch(addTodo(newTodo));
+    }
+  };
+
+  const handleRemoveTodo = (id: string) => {
+    dispatch(removeTodo(id));
+  };
+
+  const handleToggleTodo = (id: string) => {
+    dispatch(toggleTodo(id));
+  };
+
+  const handleEditTodo = (id: string) => {
+    const todo = todos[id];
+    if (todo) {
+      dispatch(setEditTodo({ id, text: todo.text }));
+    }
+  };
+
+  const handleUpdateTodo = (id: string, text: string) => {
+    dispatch(updateTodo({ id, text }));
+  };
+
+  const handleNewTodoChange = (value: string) => {
+    dispatch(setNewTodo(value));
+  };
+
+  const handleEditTodoChange = (value: string) => {
+    dispatch(setEditTodo({ id: editTodoId, text: value }));
+  };
+
+  const handleCancelEdit = () => {
+    dispatch(setEditTodo({ id: '', text: '' }));
+  };
+
+  return (
+    <Div>
+      <h2>Home</h2>
+      <Div>
+        <Input
+          type="text"
+          value={newTodo}
+          onChange={(e) => handleNewTodoChange(e.target.value)}
+          placeholder="Add a new todo"
+        />
+        <Button onClick={handleAddTodo}>Add</Button>
+      </Div>
+      <Ul>
+        {Object.entries(todos).map(([id, todo]) => (
+          <Li key={id}>
+            {editTodoId === id ? (
+              <Div>
+                <Input
+                  type="text"
+                  value={editTodo}
+                  onChange={(e) => handleEditTodoChange(e.target.value)}
+                />
+                <Button onClick={() => handleUpdateTodo(id, editTodo)}>
+                  Update
+                </Button>
+                <Button onClick={handleCancelEdit}>Cancel</Button>
+              </Div>
+            ) : (
+              <Div>
+                <Input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => handleToggleTodo(id)}
+                />
+                <Span
+                  style={{
+                    textDecoration: todo.completed ? 'line-through' : 'none',
+                  }}
+                >
+                  {todo.text}
+                </Span>
+                <Button onClick={() => handleRemoveTodo(id)}>Remove</Button>
+                <Button onClick={() => handleEditTodo(id)}>Edit</Button>
+              </Div>
+            )}
+          </Li>
+        ))}
+      </Ul>
+    </Div>
+  );
+};
+
+export default Home;
+
+File: components/common/index.ts
+export { default as Button } from './button/Button';
+export { default as Input } from './input/Input';
+export { default as Div } from './div/Div';
+export { default as Li } from './li/Li';
+export { default as Span } from './span/Span';
+export { default as Ul } from './ul/Ul';
+
+File: components/common/button/Button.tsx
+import React, { ReactNode, ButtonHTMLAttributes } from 'react';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, ...restProps }) => {
+  return <button {...restProps}>{children}</button>;
+};
+
+export default Button;
+
+File: components/common/div/Div.tsx
+import React, { HTMLAttributes } from 'react';
+
+interface DivProps extends HTMLAttributes<HTMLDivElement> {}
+
+const Div: React.FC<DivProps> = (props) => {
+  return <div {...props} />;
+};
+
+export default Div;
+
+File: components/common/span/Span.tsx
+import React, { HTMLAttributes } from 'react';
+
+interface SpanProps extends HTMLAttributes<HTMLSpanElement> {}
+
+const Span: React.FC<SpanProps> = (props) => {
+  return <span {...props} />;
+};
+
+export default Span;
+
+File: components/common/input/Input.tsx
+import React, { InputHTMLAttributes } from 'react';
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+const Input: React.FC<InputProps> = (props) => {
+  return <input {...props} />;
+};
+
+export default Input;
+
+File: components/common/li/Li.tsx
+import React, { LiHTMLAttributes } from 'react';
+
+interface LiProps extends LiHTMLAttributes<HTMLLIElement> {}
+
+const Li: React.FC<LiProps> = (props) => {
+  return <li {...props} />;
+};
+
+export default Li;
+
+File: components/common/ul/Ul.tsx
+import React, { HTMLAttributes } from 'react';
+
+interface UlProps extends HTMLAttributes<HTMLUListElement> {}
+
+const Ul: React.FC<UlProps> = (props) => {
+  return <ul {...props} />;
+};
+
+export default Ul;
+
+File: components/common/label/Label.tsx
+import React, { LabelHTMLAttributes } from 'react';
+
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {}
+
+const Label: React.FC<LabelProps> = (props) => {
+  return <label {...props} />;
+};
+
+export default Label;
+
