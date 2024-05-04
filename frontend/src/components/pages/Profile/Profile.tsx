@@ -21,13 +21,14 @@ import GetUsers from "../../forms/auth/GetUsers";
 const Profile: React.FC = () => {
   const dispatch = useDispatch();
   const profiles = useSelector((state: RootState) => state.profiles.profiles);
+  const isLoading = useSelector((state: RootState) => state.profiles.isLoading);
 
   const handleEditProfile = (
     field: string,
     value: string | number,
     profileId: string
   ) => {
-    const profile = profiles[profileId];
+    const profile = profiles.find((p) => p.id === profileId);
     if (profile) {
       const updatedProfile = { ...profile };
       switch (field) {
@@ -53,10 +54,21 @@ const Profile: React.FC = () => {
   // const [count, setCount] = useState(0);
 
   // Используем useEffect с массивом зависимостей
+  // useEffect(() => {
+  //   GetUsers(dispatch);
+  //   // Здесь можно выполнять действия, которые должны происходить только при изменении определенных переменных
+  // }, [dispatch]);
+
   useEffect(() => {
-    GetUsers();
-    // Здесь можно выполнять действия, которые должны происходить только при изменении определенных переменных
-  }, []); // useEffect будет вызываться только при изменении переменной count
+    GetUsers(dispatch);
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <div>Загрузка данных...</div>;
+  }
+  // useEffect(() => {
+  //   GetUsers(dispatch);
+  // }, [dispatch]);
 
   return (
     <Div>

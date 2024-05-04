@@ -1,51 +1,58 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProfileInterfase } from '../../types/Profile';
 
-
-// Определение интерфейса для состояния слайса Profile
 interface ProfileState {
-    profiles: { [id: string]: ProfileInterfase }; 
-    newProfile: ProfileInterfase; 
-    editProfile: ProfileInterfase;
-    editProfileId: string; // Идентификатор 
-  }
+  profiles: ProfileInterfase[];
+  newProfile: ProfileInterfase;
+  editProfile: ProfileInterfase;
+  editProfileId: string;
+  isLoading: boolean;
+}
 
-  // Определение начального состояния для слайса Todo
-  const initialState: ProfileState = {
-    profiles: {},
-    newProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
-    editProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
-    editProfileId: ''
-  };
-  
+const initialState: ProfileState = {
+  profiles: [],
+  newProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
+  editProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
+  editProfileId: '',
+  isLoading: false,
+};
 
-// Создание слайса Profile с использованием createSlice из Redux Toolkit
 const profilesSlice = createSlice({
   name: 'profiles',
   initialState,
   reducers: {
+    setProfiles: (state, action: PayloadAction<ProfileInterfase[]>) => {
+      state.profiles = action.payload;
+      state.isLoading = false;
+    },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
     addProfile: (state, action: PayloadAction<ProfileInterfase>) => {
       const newProfile = action.payload;
       const id = Date.now().toString();
-      const profileWithId = { ...newProfile, id }; // Создаем новый объект с добавленным свойством id
-      state.profiles[id] = profileWithId;
+      const profileWithId = { ...newProfile, id };
+      state.profiles.push(profileWithId);
       state.newProfile = { id: '', name: '', surname: '', email: '', password: '', completed: false };
-      console.log("Added to profile: " + id.toString() + " " + state.profiles[id].name + " " + state.profiles[id].completed);
     },
     removeProfile: (state, action: PayloadAction<string>) => {
       const id = action.payload;
-      delete state.profiles[id];
+      state.profiles = state.profiles.filter(profile => profile.id !== id);
     },
     updateProfile: (state, action: PayloadAction<ProfileInterfase>) => {
       const updatedProfile = action.payload;
-      const id = updatedProfile.id; // Теперь это допустимо
-      state.profiles[id] = updatedProfile;
+      state.profiles = state.profiles.map(profile => {
+        if (profile.id === updatedProfile.id) {
+          return updatedProfile;
+        }
+        return profile;
+      });
       state.editProfile = { id: '', name: '', surname: '', email: '', password: '', completed: false };
       state.editProfileId = '';
     },
     selectProfileForEdit: (state, action: PayloadAction<string>) => {
       const id = action.payload;
-      const selectedProfile = state.profiles[id];
+      const selectedProfile = state.profiles.find(profile => profile.id === id);
       if (selectedProfile) {
         state.editProfile = selectedProfile;
         state.editProfileId = id;
@@ -54,5 +61,7 @@ const profilesSlice = createSlice({
   },
 });
 
-export const { addProfile, removeProfile, updateProfile, selectProfileForEdit } = profilesSlice.actions;
+export const { setProfiles, setIsLoading, addProfile, removeProfile, updateProfile, selectProfileForEdit } = profilesSlice.actions;
 export default profilesSlice.reducer;
+
+
