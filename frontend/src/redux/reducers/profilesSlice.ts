@@ -13,8 +13,8 @@ interface ProfileState {
   // Определение начального состояния для слайса Todo
   const initialState: ProfileState = {
     profiles: {},
-    newProfile: { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false },
-    editProfile: { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false },
+    newProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
+    editProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
     editProfileId: ''
   };
   
@@ -29,7 +29,7 @@ const profilesSlice = createSlice({
       const id = Date.now().toString();
       const profileWithId = { ...newProfile, id }; // Создаем новый объект с добавленным свойством id
       state.profiles[id] = profileWithId;
-      state.newProfile = { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false };
+      state.newProfile = { id: '', name: '', surname: '', email: '', password: '', completed: false };
       console.log("Added to profile: " + id.toString() + " " + state.profiles[id].name + " " + state.profiles[id].completed);
     },
     removeProfile: (state, action: PayloadAction<string>) => {
@@ -40,7 +40,7 @@ const profilesSlice = createSlice({
       const updatedProfile = action.payload;
       const id = updatedProfile.id; // Теперь это допустимо
       state.profiles[id] = updatedProfile;
-      state.editProfile = { id: '', name: '', age: 0, email: '', phone: 0, password: '', completed: false };
+      state.editProfile = { id: '', name: '', surname: '', email: '', password: '', completed: false };
       state.editProfileId = '';
     },
     selectProfileForEdit: (state, action: PayloadAction<string>) => {

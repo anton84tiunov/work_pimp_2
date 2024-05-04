@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Caption,
@@ -16,6 +16,7 @@ import { updateProfile } from "../../../redux/reducers/profilesSlice";
 import { RootState } from "../../../redux/store";
 import "./profile.css";
 import RegistrationForm from "../../forms/auth/RegistrationForm";
+import GetUsers from "../../forms/auth/GetUsers";
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,14 +34,11 @@ const Profile: React.FC = () => {
         case "name":
           updatedProfile.name = String(value);
           break;
-        case "age":
-          updatedProfile.age = Number(value);
+        case "surname":
+          updatedProfile.surname = String(value);
           break;
         case "email":
           updatedProfile.email = String(value);
-          break;
-        case "phone":
-          updatedProfile.phone = Number(value);
           break;
         case "password":
           updatedProfile.password = String(value);
@@ -51,6 +49,14 @@ const Profile: React.FC = () => {
       dispatch(updateProfile(updatedProfile));
     }
   };
+
+  // const [count, setCount] = useState(0);
+
+  // Используем useEffect с массивом зависимостей
+  useEffect(() => {
+    GetUsers();
+    // Здесь можно выполнять действия, которые должны происходить только при изменении определенных переменных
+  }, []); // useEffect будет вызываться только при изменении переменной count
 
   return (
     <Div>
@@ -64,9 +70,8 @@ const Profile: React.FC = () => {
           <Tr>
             <Th>id</Th>
             <Th>name</Th>
-            <Th>age</Th>
+            <Th>surname</Th>
             <Th>email</Th>
-            <Th>phone</Th>
             <Th>password</Th>
           </Tr>
           {Object.entries(profiles).map(([id, profile]) => (
@@ -84,10 +89,10 @@ const Profile: React.FC = () => {
               <Td>
                 <Input
                   onChange={(e) =>
-                    handleEditProfile("age", e.target.value, profile.id)
+                    handleEditProfile("surname", e.target.value, profile.id)
                   }
-                  type="number"
-                  value={profile.age}
+                  type="text"
+                  value={profile.surname}
                 />
               </Td>
               <Td>
@@ -97,15 +102,6 @@ const Profile: React.FC = () => {
                   }
                   type="text"
                   value={profile.email}
-                />
-              </Td>
-              <Td>
-                <Input
-                  onChange={(e) =>
-                    handleEditProfile("phone", e.target.value, profile.id)
-                  }
-                  type="number"
-                  value={profile.phone}
                 />
               </Td>
               <Td>

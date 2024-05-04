@@ -4,37 +4,57 @@ import { addProfile } from "../../../redux/reducers/profilesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import Tbody from "../../common/table/tbody/Tbody";
+import axios from "axios";
 
 const RegistrationForm: React.FC = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
+  const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState(0);
   const [password, setPassword] = useState("");
 
   const newProfile = useSelector(
     (state: RootState) => state.profiles.newProfile
   );
 
-  const handleAddProfile = () => {
+  const handleAddProfile = async () => {
     // const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;&& emailRegex.test(email)
-    if (name && age && email && phone && password) {
+    if (name && surname && email && password) {
       const updatedProfile = {
         ...newProfile,
         name,
-        age,
+        surname,
         email,
-        phone,
         password,
       };
+
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/users/create",
+          {
+            name: name,
+            surname: surname,
+            email: email,
+            password: password,
+          }
+        );
+
+        console.log("Profile added:", response.data);
+      } catch (error: any) {
+        // Приводим тип error к типу Error, чтобы избежать ошибки компиляции
+        const typedError = error as Error;
+
+        // Теперь можно обращаться к свойствам типа Error без ошибок компиляции
+        console.log(typedError.message);
+        console.log(typedError.stack);
+        // Другие действия с объектом типа Error
+      }
       dispatch(addProfile(updatedProfile));
-      setName("");
-      setAge(0);
-      setEmail("");
-      setPhone(0);
-      setPassword("");
+      // setName("");
+      // setSurname("");
+      // setEmail("");
+      // setPassword("");
       // setEmailError("");
       // } else if (!emailRegex.test(email)) {
       //   setEmailError('Неверный формат электронной почты');
@@ -63,14 +83,14 @@ const RegistrationForm: React.FC = () => {
           </Tr>
           <Tr>
             <Td>
-              <Span>age</Span>
+              <Span>surname</Span>
             </Td>
             <Td>
               <Input
-                type="number"
-                value={age}
-                onChange={(e) => setAge(Number(e.target.value))}
-                placeholder="age"
+                type="text"
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)}
+                placeholder="surname"
               />
             </Td>
           </Tr>
@@ -84,19 +104,6 @@ const RegistrationForm: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email"
-              />
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>
-              <Span>phone</Span>
-            </Td>
-            <Td>
-              <Input
-                type="number"
-                value={phone}
-                onChange={(e) => setPhone(Number(e.target.value))}
-                placeholder="phone"
               />
             </Td>
           </Tr>
@@ -121,3 +128,47 @@ const RegistrationForm: React.FC = () => {
 };
 
 export default RegistrationForm;
+
+// @PrimaryGeneratedColumn()
+//     user_id: number;
+
+//     @Column({ length: 100 , unique: true})
+//     email: string;
+
+//     @Column({ length: 100 })
+//     password: string;
+
+//     @OneToMany(() => ResumeEntity, resume => resume.user)
+//     resumes: ResumeEntity[];
+
+//     @ManyToMany(() => SkillEntity)
+//     @JoinTable()
+//     skills: SkillEntity[];
+
+//     @OneToMany(() => VacancyEntity, vacancy => vacancy.user)
+//     vacancies: VacancyEntity[];
+
+//     @OneToMany(() => NotificationEntity, notification => notification.user)
+//     notifications: NotificationEntity[];
+
+//     @OneToOne(() => LocationEntity)
+//     @JoinColumn()
+//     location: LocationEntity;
+
+//     @OneToOne(() => EducationEntity)
+//     @JoinColumn()
+//     education: EducationEntity;
+
+//     @OneToOne(() => ExperienceEntity)
+//     @JoinColumn()
+//     experience: ExperienceEntity;
+
+//     @ManyToMany(() => LanguageEntity)
+//     @JoinTable()
+//     languages: LanguageEntity[];
+
+//     @OneToMany(() => CertificationEntity, certification => certification.user)
+//     certifications: CertificationEntity[];
+
+//     @OneToMany(() => ApplicationEntity, application => application.user)
+//     applications: ApplicationEntity[];

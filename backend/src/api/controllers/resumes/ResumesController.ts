@@ -17,6 +17,7 @@ export const createResume = async (req: Request, res: Response): Promise<void> =
     }
 }
 
+
 export const getAllResume = async (req: Request, res: Response): Promise<void> => {
     try {
         const resume = await resumeService.findAllResumes();

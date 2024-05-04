@@ -15,11 +15,16 @@ export class UserEntity {
     @PrimaryGeneratedColumn()
     user_id: number;
 
-    
-    @Column({ length: 100 , unique: true})
+    @Column({ length: 20, nullable: false})
+    name: string;
+
+    @Column({ length: 20, nullable: false})
+    surname: string;
+
+    @Column({ length: 100 , unique: true, nullable: false})
     email: string;
 
-    @Column({ length: 100 })
+    @Column({ length: 100, nullable: false })
     password: string;
 
     @OneToMany(() => ResumeEntity, resume => resume.user)
