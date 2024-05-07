@@ -1,0 +1,36 @@
+это мой проэки https://github.com/anton84tiunov/express-work_pimp_2 покажи как можно переделать проэкт чтоб он соответствовал нужным практикам для
+ маштабирования и поддержки очень длительное время.раздели на  core и api .
+. должна остаться функцмрнальность взаимодействия с базой данных по средствам typeorm 
+https://github.com/typeorm/typeorm .реализуй все методы crud для каждого обьекта. добавь логтрование при помощи самой популярной библиотеки.
+покажи на примере 3 сущностей .реализуй все файлы для их полноценного функционирования.подписывай названия файлов. составь аолный ответ со всеми файлами 
+и ничего не пропускай.
+Ни один из импортов в объявлении импорта не используется.ts(6192)
+"EntityRepository" устарело.ts(6385)
+EntityRepository.d.ts(7, 4): Объявление было отмечено как устаревшее.
+(alias) function EntityRepository(entity?: Function | EntitySchema<any>): ClassDecorator
+import EntityRepository
+Used to declare a class as a custom repository. Custom repository can manage some specific entity or just be generic. Custom repository optionally can extend AbstractRepository, Repository or TreeRepository.
+
+@deprecated — use Repository.extend function to create a custom repository
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

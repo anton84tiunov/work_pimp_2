@@ -11,8 +11,7 @@ export const createApplication = async (req: Request, res: Response): Promise<vo
     const newApplication = await applicationService.createApplication(req.body as ApplicationEntity);
     res.status(201).json(newApplication);
   } catch (error) {
-    logger.error(error.stack);
-    console.error('Ошибка при создании заявки:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Ошибка при создании заявки' });
   }
 };
@@ -22,8 +21,7 @@ export const getAllApplications = async (req: Request, res: Response): Promise<v
     const applications = await applicationService.getAllApplications();
     res.json(applications);
   } catch (error) {
-    logger.error(error.stack);
-    console.error('Ошибка при получении заявок:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Ошибка при получении заявок' });
   }
 };

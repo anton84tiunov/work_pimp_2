@@ -9,7 +9,7 @@ const internalModuleRegex = /node_modules|winston|logform/;
 const logger = winston.createLogger({
   level: 'info',
   format: format.combine(
-    format.label({ label: 'your-service' }),
+    format.label({ label: 'site-service' }),
     format.timestamp(),
     format.printf(({ level, message, label, timestamp }) => {
       const stack = callsite();
@@ -18,10 +18,11 @@ const logger = winston.createLogger({
       if (callerInfo) {
         const fileName = callerInfo.getFileName();
         const lineNumber = callerInfo.getLineNumber();
-
+        console.log(`${timestamp} [${label}] ${fileName}:${lineNumber} ${level}: ${message}`);
         return `${timestamp} [${label}] ${fileName}:${lineNumber} ${level}: ${message}`;
       } else {
         return `${timestamp} [${label}] ${level}: ${message}`;
+        console.log(`${timestamp} [${label}] ${level}: ${message}`);
       }
     })
   ),

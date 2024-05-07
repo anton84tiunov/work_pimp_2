@@ -1,0 +1,30 @@
+
+
+#######################    СОЗДАНИЕ ПРИЛОЖЕНИЯ   #######################
+npx create-react-app frontend --template typescript
+
+cd frontend
+npm install --save-dev @babel/plugin-proposal-private-property-in-object
+npm install react-redux @reduxjs/toolkit react-router-dom axios
+
+
+npm start
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

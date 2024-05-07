@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProfileInterfase } from '../../types/Profile';
+import { UserInterfase } from '../../types/UserInterfase';
 
 interface ProfileState {
-  profiles: ProfileInterfase[];
-  newProfile: ProfileInterfase;
-  editProfile: ProfileInterfase;
-  editProfileId: string;
+  profiles: UserInterfase[];
+  newProfile: UserInterfase;
+  editProfile: UserInterfase;
+  editProfileId: number;
   isLoading: boolean;
 }
 
 const initialState: ProfileState = {
   profiles: [],
-  newProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
-  editProfile: { id: '', name: '', surname: '', email: '', password: '', completed: false },
-  editProfileId: '',
+  newProfile: { user_id: 0, name: '', surname: '', email: '', password: '', completed: false },
+  editProfile: { user_id: 0, name: '', surname: '', email: '', password: '', completed: false },
+  editProfileId: 0,
   isLoading: false,
 };
 
@@ -21,41 +21,41 @@ const profilesSlice = createSlice({
   name: 'profiles',
   initialState,
   reducers: {
-    setProfiles: (state, action: PayloadAction<ProfileInterfase[]>) => {
+    setProfiles: (state, action: PayloadAction<UserInterfase[]>) => {
       state.profiles = action.payload;
       state.isLoading = false;
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    addProfile: (state, action: PayloadAction<ProfileInterfase>) => {
+    addProfile: (state, action: PayloadAction<Omit<UserInterfase, 'id'>>) => {
       const newProfile = action.payload;
-      const id = Date.now().toString();
-      const profileWithId = { ...newProfile, id };
+      // const id = Date.now();
+      const profileWithId = { ...newProfile };
       state.profiles.push(profileWithId);
-      state.newProfile = { id: '', name: '', surname: '', email: '', password: '', completed: false };
+      state.newProfile = { user_id: 0, name: '', surname: '', email: '', password: '', completed: false };
     },
-    removeProfile: (state, action: PayloadAction<string>) => {
-      const id = action.payload;
-      state.profiles = state.profiles.filter(profile => profile.id !== id);
+    removeProfile: (state, action: PayloadAction<number>) => {
+      const user_id = action.payload;
+      state.profiles = state.profiles.filter(profile => profile.user_id !== user_id);
     },
-    updateProfile: (state, action: PayloadAction<ProfileInterfase>) => {
+    updateProfile: (state, action: PayloadAction<UserInterfase>) => {
       const updatedProfile = action.payload;
       state.profiles = state.profiles.map(profile => {
-        if (profile.id === updatedProfile.id) {
+        if (profile.user_id === updatedProfile.user_id) {
           return updatedProfile;
         }
         return profile;
       });
-      state.editProfile = { id: '', name: '', surname: '', email: '', password: '', completed: false };
-      state.editProfileId = '';
+      state.editProfile = { user_id: 0, name: '', surname: '', email: '', password: '', completed: false };
+      state.editProfileId = 0;
     },
-    selectProfileForEdit: (state, action: PayloadAction<string>) => {
-      const id = action.payload;
-      const selectedProfile = state.profiles.find(profile => profile.id === id);
+    selectProfileForEdit: (state, action: PayloadAction<number>) => {
+      const user_id = action.payload;
+      const selectedProfile = state.profiles.find(profile => profile.user_id === user_id);
       if (selectedProfile) {
         state.editProfile = selectedProfile;
-        state.editProfileId = id;
+        state.editProfileId = user_id;
       }
     },
   },
@@ -63,5 +63,3 @@ const profilesSlice = createSlice({
 
 export const { setProfiles, setIsLoading, addProfile, removeProfile, updateProfile, selectProfileForEdit } = profilesSlice.actions;
 export default profilesSlice.reducer;
-
-

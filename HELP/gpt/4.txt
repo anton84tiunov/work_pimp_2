@@ -1,0 +1,9 @@
+это мой проэки https://github.com/anton84tiunov/express-work_pimp_2.
+я использую https://github.com/typeorm/typeorm,
+ https://github.com/winstonjs/winston.
+как переделать чтоб соответствовала  лучшим практикам
+для дальнейшего масштабирования
+
+
+подписывай все файлы
+

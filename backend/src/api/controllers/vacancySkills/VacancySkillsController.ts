@@ -11,8 +11,7 @@ export const createVacancySkills = async (req: Request, res: Response): Promise<
         const newVacancySkills = await vacancySkillsService.createVacancySkill(newVacancySkillsData);
         res.json(newVacancySkills);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при создании вакансии:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при создании вакансии' });
     }
 }
@@ -23,8 +22,7 @@ export const getAllVacancySkills = async (req: Request, res: Response): Promise<
         const vacancySkills = await vacancySkillsService.findAllVacancySkill();
         res.json(vacancySkills);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при получении вакансий:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при получении вакансий' });
     }
 }

@@ -10,7 +10,7 @@ export const getAllExperiences = async (req: Request, res: Response) => {
     const experiences = await experienceService.getAllExperiences();
     res.status(200).json(experiences);
   } catch (error) {
-    logger.error('Error getting experiences:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to get experiences' });
   }
 };
@@ -21,7 +21,7 @@ export const createExperience = async (req: Request, res: Response) => {
     const newExperience = await experienceService.createExperience(experienceData);
     res.status(201).json(newExperience);
   } catch (error) {
-    logger.error('Error creating experience:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to create experience' });
   }
 };

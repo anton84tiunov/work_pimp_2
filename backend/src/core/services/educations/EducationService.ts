@@ -1,15 +1,13 @@
 import logger from '../../../utils/logger';
 import { EducationEntity } from '../../entities/EducationEntity';
-import { EducationRepository } from '../../repositories/educations/EducationRepository';
+import { EducationRepository } from '../../repositories/EducationRepository';
 
 export class EducationService{
     async createEducation(educationData: EducationEntity): Promise<EducationEntity> {
         try {
           return await EducationRepository.save(educationData);
         } catch (error) {
-          logger.error(error.stack);
-          console.error('Error creating education:', error);
-          throw new Error('Failed to create education');
+          throw error;
         }
     }
 
@@ -17,9 +15,7 @@ export class EducationService{
         try {
           return await EducationRepository.find({ relations: ['user'] });
         } catch (error) {
-          logger.error(error.stack);
-          console.error('Error getting all educations:', error);
-          throw new Error('Failed to get all educations');
+          throw error;
         }
     }
 }

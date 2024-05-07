@@ -10,7 +10,7 @@ export const getAllLocations = async (req: Request, res: Response) => {
     const locations = await locationService.getAllLocations();
     res.status(200).json(locations);
   } catch (error) {
-    logger.error('Error getting locations:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to get locations' });
   }
 };
@@ -21,7 +21,7 @@ export const createLocation = async (req: Request, res: Response) => {
     const newLocation = await locationService.createLocation(locationData);
     res.status(201).json(newLocation);
   } catch (error) {
-    logger.error('Error creating location:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to create location' });
   }
 };

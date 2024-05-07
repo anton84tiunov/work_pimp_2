@@ -1,0 +1,85 @@
+Сущность: User
+- GET /api/users - Получить список всех пользователей
+- GET /api/users/:id - Получить пользователя по ID
+- POST /api/users - Создать нового пользователя
+- PUT /api/users/:id - Обновить пользователя по ID
+- DELETE /api/users/:id - Удалить пользователя по ID
+
+Сущность: UserSettings
+- GET /api/users/:userId/settings - Получить настройки пользователя
+- PUT /api/users/:userId/settings - Обновить настройки пользователя
+
+Сущность: NotificationSetting
+- GET /api/users/:userId/notifications - Получить настройки уведомлений пользователя
+- PUT /api/users/:userId/notifications - Обновить настройки уведомлений пользователя
+
+Сущность: Token
+- POST /api/auth/login - Получить токен при авторизации
+- POST /api/auth/refresh - Обновить токен доступа
+
+Сущность: Resume
+- GET /api/resumes - Получить список всех резюме
+- GET /api/resumes/:id - Получить резюме по ID
+- POST /api/resumes - Создать новое резюме
+- PUT /api/resumes/:id - Обновить резюме по ID
+- DELETE /api/resumes/:id - Удалить резюме по ID
+
+Сущность: Experience
+- GET /api/resumes/:resumeId/experiences - Получить список опыта работы для резюме
+- POST /api/resumes/:resumeId/experiences - Добавить опыт работы в резюме
+- PUT /api/resumes/:resumeId/experiences/:id - Обновить опыт работы в резюме
+- DELETE /api/resumes/:resumeId/experiences/:id - Удалить опыт работы из резюме
+
+Сущность: Education
+- GET /api/resumes/:resumeId/education - Получить список образования для резюме
+- POST /api/resumes/:resumeId/education - Добавить образование в резюме
+- PUT /api/resumes/:resumeId/education/:id - Обновить образование в резюме
+- DELETE /api/resumes/:resumeId/education/:id - Удалить образование из резюме
+
+Сущность: Company
+- GET /api/companies - Получить список всех компаний
+- GET /api/companies/:id - Получить компанию по ID
+- POST /api/companies - Создать новую компанию
+- PUT /api/companies/:id - Обновить компанию по ID
+- DELETE /api/companies/:id - Удалить компанию по ID
+
+Сущность: Industry
+- GET /api/industries - Получить список всех отраслей
+- GET /api/industries/:id - Получить отрасль по ID
+- POST /api/industries - Создать новую отрасль
+- PUT /api/industries/:id - Обновить отрасль по ID
+- DELETE /api/industries/:id - Удалить отрасль по ID
+
+Сущность: Category
+- GET /api/categories - Получить список всех категорий
+- GET /api/categories/:id - Получить категорию по ID
+- POST /api/categories - Создать новую категорию
+- PUT /api/categories/:id - Обновить категорию по ID
+- DELETE /api/categories/:id - Удалить категорию по ID
+
+Сущность: Job
+- GET /api/jobs - Получить список всех вакансий
+- GET /api/jobs/:id - Получить вакансию по ID
+- POST /api/jobs - Создать новую вакансию
+- PUT /api/jobs/:id - Обновить вакансию по ID
+- DELETE /api/jobs/:id - Удалить вакансию по ID
+
+Сущность: Application
+- GET /api/applications - Получить список всех заявок
+- GET /api/applications/:id - Получить заявку по ID
+- POST /api/applications - Создать новую заявку
+- PUT /api/applications/:id - Обновить заявку по ID
+- DELETE /api/applications/:id - Удалить заявку по ID
+
+Сущность: Review
+- GET /api/companies/:companyId/reviews - Получить список отзывов для компании
+- POST /api/companies/:companyId/reviews - Оставить отзыв о компании
+- PUT /api/companies/:companyId/reviews/:id - Обновить отзыв о компании
+- DELETE /api/companies/:companyId/reviews/:id - Удалить отзыв о компании
+
+Сущность: Subscription
+- GET /api/subscriptions - Получить список всех подписок
+- GET /api/subscriptions/:id - Получить подписку по ID
+- POST /api/subscriptions - Создать новую подписку
+- PUT /api/subscriptions/:id - Обновить подписку по ID
+- DELETE /api/subscriptions/:id - Удалить подписку по ID

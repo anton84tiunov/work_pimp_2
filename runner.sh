@@ -39,7 +39,7 @@ sleep 1
 xdotool key ctrl+shift+grave
 sleep 1
 # Выполняем команду в новом терминале
-execute_command_in_vscode_terminal "cd ./backend && npm run start-ts"
+execute_command_in_vscode_terminal "cd ./backend && npm start"
 
 
 
