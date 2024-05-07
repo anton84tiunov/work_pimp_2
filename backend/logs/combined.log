@@ -163,3 +163,21 @@
 2024-05-07T15:05:03.730Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
 2024-05-07T15:14:14.893Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
 2024-05-07T15:21:25.523Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T17:41:12.599Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:21:22.904Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:33:44.969Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:37:17.300Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:39:24.559Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:39:46.894Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:51:15.743Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:55:16.019Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:56:24.729Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:57:40.969Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T18:59:20.491Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:00:57.913Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:01:38.620Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:03:16.469Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:07:00.470Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:07:36.464Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 error: Cannot read properties of undefined (reading 'accessToken')
+2024-05-07T19:13:06.127Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:15:23.555Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован

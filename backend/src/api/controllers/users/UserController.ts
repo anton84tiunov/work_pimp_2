@@ -1,5 +1,6 @@
 
 import { Request, Response } from "express";
+import cookieParser from 'cookie-parser';
 import { UserService } from "../../../core/services/users/UserService";
 import { UserEntity } from "../../../core/entities/UserEntity";
 import logger from "../../../utils/logger";
@@ -28,7 +29,14 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
     try {
+        const accessToken = req.cookies.accessToken;
+        console.log("accessToken", accessToken);
+        if (!accessToken) {
+            res.status(401).json({ error: 'Пользователь не авторизован' });
+            return;
+        }
         const users = await userService.getAllUsers();
+        console.log("users", users);
         res.json(users);
     } catch (error) {
         logger.error(error);
@@ -53,7 +61,25 @@ export const authenticateUser = async (req: Request, res: Response): Promise<voi
             await redisSingleton.set(`user:${id}:refreshToken`, JSON.stringify(dataToCache), 3600); // Cache for 1 hour
             const cachedData = await redisSingleton.get(`user:${id}:refreshToken`);
             console.log(cachedData);
-            res.json({ email, accessToken, refreshToken });
+            // res.json({ email, accessToken, refreshToken });
+            res.cookie('accessToken', accessToken, {
+                httpOnly: true, // Кука будет доступна только через HTTP(S) запросы
+                // secure: true,   // Кука будет отправляться только по HTTPS
+                sameSite: 'strict' // Определяет, должна ли кука отправляться только в рамках первой партии
+              });
+              res.cookie('refreshToken', refreshToken, {
+                httpOnly: true, // Кука будет доступна только через HTTP(S) запросы
+                // secure: true,   // Кука будет отправляться только по HTTPS
+                sameSite: 'strict' // Определяет, должна ли кука отправляться только в рамках первой партии
+              });
+              res.cookie('email', email, {
+                httpOnly: true, // Кука будет доступна только через HTTP(S) запросы
+                // secure: true,   // Кука будет отправляться только по HTTPS
+                sameSite: 'strict' // Определяет, должна ли кука отправляться только в рамках первой партии
+              });
+              console.log(res.cookie.length);
+            
+              res.send('Login successful');
         }
 
         
@@ -93,71 +119,4 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
       }
     }
   };
-
-
-
-
-// import { generateAccessToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken } from '../utils/jwt';
-// import { storeRefreshToken, getRefreshToken } from '../utils/redis';
-
-// // Маршрут для аутентификации пользователя
-// app.post('/login', async (req: Request, res: Response) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     // Поиск пользователя по email
-//     const user = await UserRepository.findOne({ where: { email } });
-//     if (!user) {
-//       return res.status(400).json({ error: 'Invalid email or password' });
-//     }
-
-//     // Проверка пароля
-//     const isPasswordValid = await bcrypt.compare(password, user.password);
-//     if (!isPasswordValid) {
-//       return res.status(400).json({ error: 'Invalid email or password' });
-//     }
-
-//     // Генерация access и refresh токенов
-//     const accessToken = generateAccessToken(user.id.toString());
-//     const refreshToken = generateRefreshToken(user.id.toString());
-
-//     // Сохранение refresh токена в Redis
-//     await storeRefreshToken(user.id.toString(), refreshToken);
-
-//     res.json({ accessToken, refreshToken });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
-
-// // Маршрут для обновления access токена
-// app.post('/refresh', async (req: Request, res: Response) => {
-//   const { refreshToken } = req.body;
-
-//   if (!refreshToken) {
-//     return res.status(401).json({ error: 'Refresh token is missing' });
-//   }
-
-//   try {
-//     // Проверка refresh токена
-//     const payload = verifyRefreshToken(refreshToken);
-//     const userId = payload.userId;
-
-//     // Получение refresh токена из Redis
-//     const storedRefreshToken = await getRefreshToken(userId.toString());
-
-//     if (!storedRefreshToken || storedRefreshToken !== refreshToken) {
-//       return res.status(403).json({ error: 'Invalid refresh token' });
-//     }
-
-//     // Генерация нового access токена
-//     const accessToken = generateAccessToken(userId.toString());
-
-//     res.json({ accessToken });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
 

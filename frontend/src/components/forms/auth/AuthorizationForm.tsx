@@ -10,7 +10,7 @@ import {
   Td,
   Tr,
 } from "../../common";
-import axios from "axios";
+import axiosInstance from "../../../services/axios/axios";
 
 const AuthorizationForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -19,8 +19,9 @@ const AuthorizationForm: React.FC = () => {
   const handleAuthorization = async () => {
     if (email && password) {
       try {
-        const response = await axios.post(
-          "http://localhost:5000/api/users/authorize",
+        const response = await axiosInstance.post(
+          "users/authorize",
+
           {
             email,
             password,
@@ -31,9 +32,9 @@ const AuthorizationForm: React.FC = () => {
         //   password,
         // };
         // localStorage.Authorization("userData", JSON.stringify(userData));
-        localStorage.setItem("accessToken", response.data.accessToken);
-        localStorage.setItem("refreshToken", response.data.refreshToken);
-        localStorage.setItem("email", response.data.email);
+        // localStorage.setItem("accessToken", response.data.accessToken);
+        // localStorage.setItem("refreshToken", response.data.refreshToken);
+        // localStorage.setItem("email", response.data.email);
         console.log("auth:", response.data);
       } catch (error: any) {
         console.log(error);
@@ -41,11 +42,12 @@ const AuthorizationForm: React.FC = () => {
     }
   };
 
-  const getLocalToken = () => {
-    console.log(localStorage.getItem("accessToken"));
-    console.log(localStorage.getItem("refreshToken"));
-    console.log(localStorage.getItem("email"));
-  };
+  // const newLocal = () => {
+  //   console.log(localStorage.getItem("accessToken"));
+  //   console.log(localStorage.getItem("refreshToken"));
+  //   console.log(localStorage.getItem("email"));
+  // };
+  // const getLocalToken = newLocal;
 
   return (
     <Div>
@@ -83,10 +85,10 @@ const AuthorizationForm: React.FC = () => {
         </Tbody>
       </Table>
       <Button onClick={handleAuthorization}>submit</Button>
-      <br />
+      {/* <br />
       <Button onClick={getLocalToken}>Get Local Token</Button>
       <br />
-      <Button onClick={() => localStorage.clear()}>Clear Local Storage</Button>
+      <Button onClick={() => localStorage.clear()}>Clear Local Storage</Button> */}
     </Div>
   );
 };

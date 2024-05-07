@@ -72,3 +72,4 @@
     at Socket.<anonymous> (/home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/node_modules/mysql/lib/Connection.js:88:28)
 2024-05-06T16:03:04.715Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 error: Пароль должен быть не менее 8 символов
 2024-05-06T16:44:32.471Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 error: Пароль должен быть не менее 8 символов
+2024-05-07T19:07:36.464Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 error: Cannot read properties of undefined (reading 'accessToken')

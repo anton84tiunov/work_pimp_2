@@ -10,7 +10,7 @@ import {
   Button,
   Div,
 } from "../../common";
-import axios from "axios";
+import axiosInstance from "../../../services/axios/axios";
 
 const RegistrationForm: React.FC = () => {
   const [name, setName] = useState("");
@@ -21,22 +21,19 @@ const RegistrationForm: React.FC = () => {
   const handleAddProfile = async () => {
     if (name && surname && email && password) {
       try {
-        const response = await axios.post(
-          "http://localhost:5000/api/users/create",
-          {
-            name,
-            surname,
-            email,
-            password,
-          }
-        );
-        const userData = {
+        const response = await axiosInstance.post("users/create", {
           name,
           surname,
           email,
           password,
-        };
-        localStorage.setItem("userData", JSON.stringify(userData));
+        });
+        // const userData = {
+        //   name,
+        //   surname,
+        //   email,
+        //   password,
+        // };
+        // localStorage.setItem("userData", JSON.stringify(userData));
         console.log("Profile added:", response.data);
       } catch (error: any) {
         console.log(error);
@@ -44,23 +41,23 @@ const RegistrationForm: React.FC = () => {
     }
   };
 
-  const setLocalUser = () => {
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-    alert("Данные сохранены в localStorage");
-  };
+  // const setLocalUser = () => {
+  //   localStorage.setItem("name", name);
+  //   localStorage.setItem("email", email);
+  //   alert("Данные сохранены в localStorage");
+  // };
 
-  const getLocalUser = () => {
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      const userData = JSON.parse(storedUserData);
-      // Доступ к свойствам данных пользователя
-      console.log("Имя:", userData.name);
-      console.log("Фамилия:", userData.surname);
-      console.log("Электронная почта:", userData.email);
-      console.log("Пароль:", userData.password);
-    }
-  };
+  // const getLocalUser = () => {
+  //   const storedUserData = localStorage.getItem("userData");
+  //   if (storedUserData) {
+  //     const userData = JSON.parse(storedUserData);
+  //     // Доступ к свойствам данных пользователя
+  //     console.log("Имя:", userData.name);
+  //     console.log("Фамилия:", userData.surname);
+  //     console.log("Электронная почта:", userData.email);
+  //     console.log("Пароль:", userData.password);
+  //   }
+  // };
 
   return (
     <Div>
@@ -124,12 +121,12 @@ const RegistrationForm: React.FC = () => {
         </Tbody>
       </Table>
       <Button onClick={handleAddProfile}>submit</Button>
-      <br />
+      {/* <br />
       <Button onClick={setLocalUser}>Set Local User</Button>
       <br />
       <Button onClick={getLocalUser}>Get Local User</Button>
       <br />
-      <Button onClick={() => localStorage.clear()}>Clear Local Storage</Button>
+      <Button onClick={() => localStorage.clear()}>Clear Local Storage</Button> */}
     </Div>
   );
 };

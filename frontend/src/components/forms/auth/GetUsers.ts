@@ -1,21 +1,14 @@
-import axios from "axios";
 import { setIsLoading, setProfiles } from "../../../redux/reducers/profilesSlice";
 import { Dispatch } from "redux";
 import { UserInterfase } from "../../../types/UserInterfase";
+import axiosInstance from "../../../services/axios/axios";
 
 const GetUsers = async (dispatch: Dispatch) => {
   dispatch(setIsLoading(true));
 
   try {
 
-    const accessToken = localStorage.getItem("accessToken")
-    const config = {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    };
-
-    const response = await axios.post("http://localhost:5000/api/users/get_all", null, config);
+    const response = await axiosInstance.post("users/get_all");
     const users: UserInterfase[] = response.data;
     console.log(users);
     dispatch(setProfiles(users));

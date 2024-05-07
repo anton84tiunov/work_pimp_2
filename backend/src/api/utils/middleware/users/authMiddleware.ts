@@ -10,8 +10,10 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
   const token = authHeader.split(' ')[1];
   try {
     const payload = verifyAccessToken(token) as JwtPayload;
+    console.log(payload );
     if (typeof payload === 'string') {
       return res.status(403).json({ error: payload });
+
     }
     req.body.userId = payload.userId;
     next();

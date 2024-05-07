@@ -8,7 +8,7 @@ import { AppDataSource } from './configs/app-data-source';
 import MainRouter from './api/routes/MainRouter'; // Исправленный импорт
 import logger from './utils/logger';
 import errorHandler from "./utils/errorHandler";
-
+import cookieParser from 'cookie-parser';
 
 
 async function startServer() {
@@ -20,12 +20,17 @@ async function startServer() {
         const app = express();
 
         app.use(helmet());
-        app.use(cors());
+        app.use(cors({
+            origin: 'http://localhost:3000', // Разрешаем запросы только с этого источника
+            credentials: true // Разрешаем передачу кук
+          }));
+          
         app.use(compression());
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
         // app.use(morgan('combined', { stream: logger.stream }));
-        
+        // Настройка cookie-parser
+app.use(cookieParser());
 
         // app.use((req, res, next) => {
         //     res.header('Access-Control-Allow-Origin', '*'); // Замените * на домен вашего приложения React в продакшн среде

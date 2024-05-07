@@ -4,7 +4,7 @@ import { addProfile } from "../../../redux/reducers/profilesSlice";
 import { useDispatch } from "react-redux";
 // import { RootState } from "../../../redux/store";
 import Tbody from "../../common/table/tbody/Tbody";
-import axios from "axios";
+import axiosInstance from "../../../services/axios/axios";
 
 const RegistrationForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,15 +17,12 @@ const RegistrationForm: React.FC = () => {
   const handleAddProfile = async () => {
     if (name && surname && email && password) {
       try {
-        const response = await axios.post(
-          "http://localhost:5000/api/users/create",
-          {
-            name,
-            surname,
-            email,
-            password,
-          }
-        );
+        const response = await axiosInstance.post("users/create", {
+          name,
+          surname,
+          email,
+          password,
+        });
 
         const { user_id } = response.data; // Получение id из ответа сервера
 

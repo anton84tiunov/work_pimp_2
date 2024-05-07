@@ -13,10 +13,15 @@ UserRouter.post(
     createUser
   );
 
+// UserRouter.post('/get_all',
+//   authMiddleware,
+//   getAllUsers
+// );
 UserRouter.post('/get_all',
-  authMiddleware,
+  // authMiddleware,
   getAllUsers
 );
+
 
 UserRouter.post('/refresh_token', refreshToken);
 
