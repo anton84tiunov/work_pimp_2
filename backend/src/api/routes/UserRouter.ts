@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
-import {  createUser, getAllUsers } from '../controllers/users/UserController';
-import { userValidationRules } from '../utils/validators/users/UserValidator';
+import {  createUser, getAllUsers, authenticateUser, refreshToken } from '../controllers/users/UserController';
+import { userValidationRules , userDyEmailValidationRules} from '../utils/validators/users/UserValidator';
 import { validate } from '../utils/validators/Validator';
+import { authMiddleware } from '../utils/middleware/users/authMiddleware';
 
 const UserRouter = express.Router();
 
@@ -12,7 +13,18 @@ UserRouter.post(
     createUser
   );
 
-UserRouter.post('/get_all', getAllUsers);
+UserRouter.post('/get_all',
+  authMiddleware,
+  getAllUsers
+);
+
+UserRouter.post('/refresh_token', refreshToken);
+
+UserRouter.post('/authorize',
+  userDyEmailValidationRules(),
+  validate,
+  authenticateUser
+ );
 
 export default UserRouter;
 

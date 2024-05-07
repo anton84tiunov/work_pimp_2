@@ -1,0 +1,471 @@
+покажи все 14 сразу
+ChatGPT
+Конечно, вот все 14 сущностей для модели базы данных вашей платформы по поиску работы и рабочих:
+
+1. UserEntity (Пользователь)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { ResumeEntity } from './ResumeEntity';
+import { SkillEntity } from './SkillEntity';
+import { VacancyEntity } from './VacancyEntity';
+import { NotificationEntity } from './NotificationEntity';
+import { LocationEntity } from './LocationEntity';
+import { EducationEntity } from './EducationEntity';
+import { ExperienceEntity } from './ExperienceEntity';
+import { LanguageEntity } from './LanguageEntity';
+import { CertificationEntity } from './CertificationEntity';
+import { ApplicationEntity } from './ApplicationEntity';
+
+@Entity()
+export class UserEntity {
+    @PrimaryGeneratedColumn()
+    user_id: number;
+
+    @Column({ length: 100 })
+    email: string;
+
+    @Column({ length: 100 })
+    password: string;
+
+    @OneToMany(() => ResumeEntity, resume => resume.user)
+    resumes: ResumeEntity[];
+
+    @ManyToMany(() => SkillEntity)
+    @JoinTable()
+    skills: SkillEntity[];
+
+    @OneToMany(() => VacancyEntity, vacancy => vacancy.user)
+    vacancies: VacancyEntity[];
+
+    @OneToMany(() => NotificationEntity, notification => notification.user)
+    notifications: NotificationEntity[];
+
+    @OneToOne(() => LocationEntity)
+    @JoinColumn()
+    location: LocationEntity;
+
+    @OneToOne(() => EducationEntity)
+    @JoinColumn()
+    education: EducationEntity;
+
+    @OneToOne(() => ExperienceEntity)
+    @JoinColumn()
+    experience: ExperienceEntity;
+
+    @ManyToMany(() => LanguageEntity)
+    @JoinTable()
+    languages: LanguageEntity[];
+
+    @OneToMany(() => CertificationEntity, certification => certification.user)
+    certifications: CertificationEntity[];
+
+    @OneToMany(() => ApplicationEntity, application => application.user)
+    applications: ApplicationEntity[];
+}
+2. ResumeEntity (Резюме)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { ResumeSkillsEntity } from './ResumeSkillsEntity';
+
+@Entity()
+export class ResumeEntity {
+    @PrimaryGeneratedColumn()
+    resume_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.resumes)
+    user: UserEntity;
+
+    @Column({ length: 100 })
+    title: string;
+
+    @Column({ type: 'text' })
+    description: string;
+
+    @OneToMany(() => ResumeSkillsEntity, resumeSkill => resumeSkill.resume)
+    skills: ResumeSkillsEntity[];
+}
+3. SkillEntity (Навык)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class SkillEntity {
+    @PrimaryGeneratedColumn()
+    skill_id: number;
+
+    @Column({ length: 100 })
+    name: string;
+
+    @ManyToMany(() => UserEntity, user => user.skills)
+    users: UserEntity[];
+}
+4. VacancyEntity (Вакансия)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { VacancySkillsEntity } from './VacancySkillsEntity';
+import { ApplicationEntity } from './ApplicationEntity';
+import { LocationEntity } from './LocationEntity';
+
+@Entity()
+export class VacancyEntity {
+    @PrimaryGeneratedColumn()
+    vacancy_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.vacancies)
+    user: UserEntity;
+
+    @Column({ length: 100 })
+    title: string;
+
+    @Column({ type: 'text' })
+    description: string;
+
+    @OneToMany(() => VacancySkillsEntity, vacancySkill => vacancySkill.vacancy)
+    skills: VacancySkillsEntity[];
+
+    @OneToMany(() => ApplicationEntity, application => application.vacancy)
+    applications: ApplicationEntity[];
+
+    @ManyToOne(() => LocationEntity, location => location.vacancies)
+    location: LocationEntity;
+}
+5. NotificationEntity (Уведомление)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { NotificationTypeEntity } from './NotificationTypeEntity'; // Импорт сущности NotificationTypeEntity
+
+@Entity()
+export class NotificationEntity {
+    @PrimaryGeneratedColumn()
+    notification_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.notifications)
+    user: UserEntity;
+
+    @ManyToOne(() => NotificationTypeEntity, notificationType => notificationType.notifications) // Определение связи с NotificationTypeEntity
+    notificationType: NotificationTypeEntity; // Объявление свойства notificationType
+
+    @Column({ length: 255 })
+    message: string;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    sent_date: Date;
+}
+6. LocationEntity (Местоположение)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { VacancyEntity } from './VacancyEntity';
+
+@Entity()
+export class LocationEntity {
+    @PrimaryGeneratedColumn()
+    location_id: number;
+
+    @Column({ length: 100 })
+    city: string;
+
+    @Column({ length: 100 })
+    country: string;
+
+    @OneToMany(() => UserEntity, user => user.location)
+    users: UserEntity[];
+
+    @OneToMany(() => VacancyEntity, vacancy => vacancy.location)
+    vacancies: VacancyEntity[];
+}
+7. EducationEntity (Образование)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class EducationEntity {
+    @PrimaryGeneratedColumn()
+    education_id: number;
+
+    @Column({ length: 100 })
+    institution: string;
+
+    @Column({ length: 100 })
+    degree: string;
+
+    @OneToMany(() => UserEntity, user => user.education)
+    users: UserEntity[];
+}
+8. ExperienceEntity (Опыт работы)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class ExperienceEntity {
+    @PrimaryGeneratedColumn()
+    experience_id: number;
+
+    @Column({ length: 100 })
+    company: string;
+
+    @Column({ length: 100 })
+    position: string;
+
+    @Column({ type: 'date' })
+    start_date: Date;
+
+    @Column({ type: 'date', nullable: true })
+    end_date: Date;
+
+    @OneToMany(() => UserEntity, user => user.experience)
+    users: UserEntity[];
+}
+9. LanguageEntity (Иностранный язык)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class LanguageEntity {
+    @PrimaryGeneratedColumn()
+    language_id: number;
+
+    @Column({ length: 50 })
+    name: string;
+
+    @ManyToMany(() => UserEntity, user => user.languages)
+    @JoinTable()
+    users: UserEntity[];
+}
+10. CertificationEntity (Сертификация)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class CertificationEntity {
+    @PrimaryGeneratedColumn()
+    certification_id: number;
+
+    @Column({ length: 100 })
+    name: string;
+
+    @Column({ type: 'date' })
+    date_earned: Date;
+
+    @ManyToOne(() => UserEntity, user => user.certifications)
+    user: UserEntity;
+}
+11. ApplicationEntity (Заявка)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { VacancyEntity } from './VacancyEntity';
+
+@Entity()
+export class ApplicationEntity {
+    @PrimaryGeneratedColumn()
+    application_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.applications)
+    user: UserEntity;
+
+    @ManyToOne(() => VacancyEntity, vacancy => vacancy.applications)
+    vacancy: VacancyEntity;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    application_date: Date;
+}
+12. ResumeSkillsEntity (Навыки в резюме)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { ResumeEntity } from './ResumeEntity';
+import { SkillEntity } from './SkillEntity';
+
+@Entity()
+export class ResumeSkillsEntity {
+    @PrimaryGeneratedColumn()
+    resume_skill_id: number;
+
+    @ManyToOne(() => ResumeEntity, resume => resume.skills)
+    resume: ResumeEntity;
+
+    @ManyToOne(() => SkillEntity, skill => skill.users)
+    skill: SkillEntity;
+}
+13. VacancySkillsEntity (Навыки в вакансии)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { VacancyEntity } from './VacancyEntity';
+import { SkillEntity } from './SkillEntity';
+
+@Entity()
+export class VacancySkillsEntity {
+    @PrimaryGeneratedColumn()
+    vacancy_skill_id: number;
+
+    @ManyToOne(() => VacancyEntity, vacancy => vacancy.skills)
+    vacancy: VacancyEntity;
+
+    @ManyToOne(() => SkillEntity, skill => skill.users)
+    skill: SkillEntity;
+}
+14. NotificationTypeEntity (Тип уведомления)
+typescript
+Copy code
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { NotificationEntity } from './NotificationEntity';
+
+@Entity()
+export class NotificationTypeEntity {
+    @PrimaryGeneratedColumn()
+    notification_type_id: number;
+
+    @Column({ length: 50 })
+    name: string;
+
+    @OneToMany(() => NotificationEntity, notification => notification.notificationType)
+    notifications: NotificationEntity[];
+}
+Это полный список сущностей с подробными описаниями, позволяющий реализовать всю функциональность вашей платформы для поиска работы и рабочих. Каждая сущность представляет определенный аспект данных, необходимых для хранения информации о пользователях, вакансиях, резюме, навыках, уведомлениях и других аспектах работы платформы
+
+
+
+обьясеи для чего все связи 
+ChatGPT
+Каждая связь между сущностями в базе данных имеет свою цель и позволяет организовать структуру данных для эффективного хранения, доступа и обработки информации. Ниже приведено объяснение каждой связи между сущностями, используемой в предложенной модели:
+
+OneToMany (Один ко многим):
+Пример: UserEntity имеет отношение OneToMany с ResumeEntity.
+Объяснение: Одному пользователю может соответствовать несколько резюме. Это позволяет одному пользователю иметь несколько записей резюме.
+ManyToOne (Многие к одному):
+Пример: ResumeEntity имеет отношение ManyToOne с UserEntity.
+Объяснение: Несколько резюме могут принадлежать одному пользователю. Это связывает резюме с соответствующим пользователем.
+ManyToMany (Многие ко многим):
+Пример: UserEntity и SkillEntity имеют отношение ManyToMany.
+Объяснение: Много пользователей могут иметь много навыков, и наоборот. Это позволяет устанавливать связь между множеством пользователей и множеством навыков.
+OneToOne (Один к одному):
+Пример: UserEntity имеет отношение OneToOne с LocationEntity.
+Объяснение: Каждому пользователю соответствует одно местоположение, и каждое местоположение привязано к одному пользователю.
+JoinTable (Таблица-соединение):
+Пример: Связь ManyToMany между UserEntity и SkillEntity реализуется через таблицу-соединение.
+Объяснение: Таблица-соединение используется для хранения пар (пользователь, навык), связывая множество пользователей с множеством навыков.
+JoinColumn (Столбец-соединение):
+Пример: Связь OneToOne между UserEntity и LocationEntity реализуется с помощью столбца-соединения.
+Объяснение: Столбец-соединение определяет, какие столбцы будут использоваться для связи между двумя сущностями.
+Каждая из этих связей позволяет структурировать данные в базе данных таким образом, чтобы отражать реальные отношения между объектами и обеспечивать эффективное управление и доступ к информации. Например, связь OneToMany позволяет организовать связь "один ко многим", где один объект может иметь много подчиненных объектов, таких как несколько резюме у одного пользователя. Такая структура данных помогает создать полнофункциональную и логически связанную базу данных для вашего приложения по поиску работы.
+
+User
+подробней про таблицы все о связях
+ChatGPT
+Чтобы подробно описать таблицы и их связи для вашей платформы по поиску работы, рассмотрим каждую сущность и их взаимосвязи подробно.
+
+1. UserEntity (Пользователь)
+Таблица users:
+
+id (Primary Key, Integer): Уникальный идентификатор пользователя.
+email (String): Email пользователя.
+password (String): Хешированный пароль пользователя.
+first_name (String): Имя пользователя.
+last_name (String): Фамилия пользователя.
+created_at (DateTime): Время создания записи.
+Связи:
+
+OneToMany с ResumeEntity: Один пользователь может иметь несколько резюме.
+2. ResumeEntity (Резюме)
+Таблица resumes:
+
+id (Primary Key, Integer): Уникальный идентификатор резюме.
+user_id (Foreign Key, Integer): Ссылка на id пользователя, создавшего резюме.
+title (String): Заголовок резюме.
+description (Text): Описание резюме.
+created_at (DateTime): Время создания записи.
+Связи:
+
+ManyToOne с UserEntity: Много резюме принадлежит одному пользователю.
+3. SkillEntity (Навык)
+Таблица skills:
+
+id (Primary Key, Integer): Уникальный идентификатор навыка.
+name (String): Название навыка.
+created_at (DateTime): Время создания записи.
+Связи:
+
+ManyToMany с UserEntity через таблицу-соединение user_skills: Много пользователей имеют много навыков.
+ManyToMany с VacancyEntity через таблицу-соединение vacancy_skills: Много вакансий требуют много навыков.
+4. VacancyEntity (Вакансия)
+Таблица vacancies:
+
+id (Primary Key, Integer): Уникальный идентификатор вакансии.
+title (String): Заголовок вакансии.
+description (Text): Описание вакансии.
+created_at (DateTime): Время создания записи.
+Связи:
+
+ManyToOne с UserEntity: Много вакансий принадлежит одному пользователю.
+ManyToMany с SkillEntity через таблицу-соединение vacancy_skills: Много вакансий требуют много навыков.
+5. MatchEntity (Совпадение)
+Таблица matches:
+
+id (Primary Key, Integer): Уникальный идентификатор совпадения.
+resume_id (Foreign Key, Integer): Ссылка на id резюме.
+vacancy_id (Foreign Key, Integer): Ссылка на id вакансии.
+created_at (DateTime): Время создания записи.
+Связи:
+
+ManyToOne с ResumeEntity: Много совпадений принадлежит одному резюме.
+ManyToOne с VacancyEntity: Много совпадений принадлежит одной вакансии.
+6. NotificationEntity (Уведомление)
+Таблица notifications:
+
+id (Primary Key, Integer): Уникальный идентификатор уведомления.
+user_id (Foreign Key, Integer): Ссылка на id пользователя, которому отправлено уведомление.
+message (Text): Текст уведомления.
+created_at (DateTime): Время создания записи.
+Связи:
+
+ManyToOne с UserEntity: Много уведомлений принадлежит одному пользователю.
+7. ResumeSkillsEntity (Навыки резюме)
+Таблица resume_skills:
+
+id (Primary Key, Integer): Уникальный идентификатор связи навыка с резюме.
+resume_id (Foreign Key, Integer): Ссылка на id резюме.
+skill_id (Foreign Key, Integer): Ссылка на id навыка.
+Связи:
+
+ManyToOne с ResumeEntity: Много навыков принадлежит одному резюме.
+ManyToOne с SkillEntity: Много навыков принадлежит одному навыку.
+8. VacancySkillsEntity (Навыки вакансии)
+Таблица vacancy_skills:
+
+id (Primary Key, Integer): Уникальный идентификатор связи навыка с вакансией.
+vacancy_id (Foreign Key, Integer): Ссылка на id вакансии.
+skill_id (Foreign Key, Integer): Ссылка на id навыка.
+Связи:
+
+ManyToOne с VacancyEntity: Много навыков принадлежит одной вакансии.
+ManyToOne с SkillEntity: Много навыков принадлежит одному навыку.
+Эта структура таблиц и их взаимосвязей позволяет организовать логическую и эффективную базу данных для вашей платформы по поиску работы и кандидатов. Каждая таблица отражает отдельную сущность вашего приложения, а связи между таблицами позволяют хранить и оперировать данными согласно логике вашего приложения.
+
+
+
+
+
+
+
+

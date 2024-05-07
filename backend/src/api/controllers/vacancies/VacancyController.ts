@@ -11,8 +11,7 @@ export const createVacancy = async (req: Request, res: Response): Promise<void> 
         const newVacancy = await vacancyService.createVacancy(newVacancyData);
         res.json(newVacancy);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при создании вакансии:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при создании вакансии' });
     }
 }
@@ -23,8 +22,7 @@ export const getAllVacancies = async (req: Request, res: Response): Promise<void
         const vacancies = await vacancyService.findAllVacancy();
         res.json(vacancies);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при получении вакансий:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при получении вакансий' });
     }
 }

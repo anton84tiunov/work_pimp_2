@@ -1,0 +1,164 @@
+
+
+#######################    СОЗДАНИЕ ПРИЛОЖЕНИЯ   #######################
+
+npm init -y
+npm install express
+npm install -D @types/express typescript ts-node
+
+-----------------------------------------------------------------
+
+touch tsconfig.json
+
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+-----------------------------------------------------------------
+
+mkdir src
+touch src/index.ts
+
+import express from 'express';
+
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello, TypeScript with Express!');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+-----------------------------------------------------------------
+
+package.json
+
+"scripts": {
+  "start": "ts-node src/index.ts"
+},
+
+-----------------------------------------------------------------
+
+tsconfig.json
+
+{
+    "compilerOptions": {
+        "lib": ["es5", "es6", "dom"],
+        "target": "es2020",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist"
+    },
+        "include": ["src/**/*.ts"],
+        "exclude": ["node_modules"]
+  }
+
+-----------------------------------------------------------------
+
+npm i typeorm mysql reflect-metadata --save
+
+-----------------------------------------------------------------
+
+touch src/app-data-source.ts
+
+import { DataSource } from "typeorm"
+
+export const myDataSource = new DataSource({
+    type: "mysql",
+    host: "localhost",
+    port: 3306,
+    username: "user_work_pimp_1",
+    password: "Qwerty123#",
+    database: "db_work_pimp_1",
+    entities: ["src/entity/*.ts"],
+    logging: true,
+    synchronize: true,
+})
+
+-----------------------------------------------------------------
+
+mkdir ./src/entity
+
+touch ./src/entity/user.entity.ts
+-----------------------------------------------------------------
+
+CREATE DATABASE db_work_pimp_2;
+
+CREATE USER 'user_work_pimp_2'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Qwerty123#';
+
+GRANT ALL PRIVILEGES ON db_work_pimp_2.* TO 'user_work_pimp_2'@'localhost';
+
+FLUSH PRIVILEGES;
+
+mysql -u user_work_pimp_2 -p 
+
+
+SET FOREIGN_KEY_CHECKS = 0;  -- Отключаем проверку внешних ключей
+DELETE FROM user_entity;     -- Удаляем все записи из таблицы
+SET FOREIGN_KEY_CHECKS = 1;  -- Включаем обратно проверку внешних ключей
+
+
+DELETE FROM child_table_1 WHERE user_entity_id IN (SELECT id FROM user_entity);
+DELETE FROM child_table_2 WHERE user_entity_id IN (SELECT id FROM user_entity);
+-- Продолжайте для других дочерних таблиц, если такие есть
+
+DELETE FROM user_entity;  -- Удаляем записи из основной таблицы
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+

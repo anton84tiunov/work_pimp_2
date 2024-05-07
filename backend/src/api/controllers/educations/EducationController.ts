@@ -10,8 +10,7 @@ export const createEducation = async (req: Request, res: Response): Promise<void
     const newEducation = await educationService.createEducation(req.body as EducationEntity);
     res.status(201).json(newEducation);
   } catch (error) {
-    logger.error(error.stack);
-    console.error('Ошибка при создании образования:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Ошибка при создании образования' });
   }
 };
@@ -21,8 +20,7 @@ export const getAllEducations = async (req: Request, res: Response): Promise<voi
     const educations = await educationService.getAllEducations();
     res.json(educations);
   } catch (error) {
-    logger.error(error.stack);
-    console.error('Ошибка при получении образований:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Ошибка при получении образований' });
   }
 };

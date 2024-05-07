@@ -10,7 +10,7 @@ export const getAllLanguages = async (req: Request, res: Response) => {
     const languages = await languageService.getAllLanguages();
     res.status(200).json(languages);
   } catch (error) {
-    logger.error('Error getting languages:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to get languages' });
   }
 };
@@ -21,7 +21,7 @@ export const createLanguage = async (req: Request, res: Response) => {
     const newLanguage = await languageService.createLanguage(languageData);
     res.status(201).json(newLanguage);
   } catch (error) {
-    logger.error('Error creating language:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to create language' });
   }
 };

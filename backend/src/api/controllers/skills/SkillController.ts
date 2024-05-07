@@ -11,8 +11,7 @@ export const createSkill = async (req: Request, res: Response): Promise<void> =>
         const newSkill = await skillService.createSkill(newSkillData);
         res.json(newSkill);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при создании навыка:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при создании навыка' });
     }
 }
@@ -22,8 +21,7 @@ export const getAllSkills = async (req: Request, res: Response): Promise<void> =
         const skills = await skillService.getAllSkills();
         res.json(skills);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при получении навыков:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при получении навыков' });
     }
 }

@@ -1,0 +1,2286 @@
+Project Structure:
+/
+├── api/
+│   ├── controllers/
+│   │   ├── applications/
+│   │   │   ├── ApplicationController.ts
+│   │   ├── certifications/
+│   │   │   ├── CertificationController.ts
+│   │   ├── educations/
+│   │   │   ├── EducationController.ts
+│   │   ├── experiences/
+│   │   │   ├── ExperienceController.ts
+│   │   ├── languages/
+│   │   │   ├── LanguageController.ts
+│   │   ├── locations/
+│   │   │   ├── LocationController.ts
+│   │   ├── matches/
+│   │   │   ├── MatchesController.ts
+│   │   ├── notificationTypes/
+│   │   │   ├── NotificationTypeController.ts
+│   │   ├── notifications/
+│   │   │   ├── NotificationsController.ts
+│   │   ├── resumeSkills/
+│   │   │   ├── ResumeSkillsController.ts
+│   │   ├── resumes/
+│   │   │   ├── ResumesController.ts
+│   │   ├── skills/
+│   │   │   ├── SkillController.ts
+│   │   ├── users/
+│   │   │   ├── UserController.ts
+│   │   ├── vacancies/
+│   │   │   ├── VacancyController.ts
+│   │   ├── vacancySkills/
+│   │       ├── VacancySkillsController.ts
+│   ├── routes/
+│   │   ├── ApplicationRoutes.ts
+│   │   ├── CertificationRouter.ts
+│   │   ├── EducationRouter.ts
+│   │   ├── ExperienceRouter.ts
+│   │   ├── LanguageRouter.ts
+│   │   ├── LocationRouter.ts
+│   │   ├── MainRouter.ts
+│   │   ├── MatchesRouter.ts
+│   │   ├── NotificationTypeRouter.ts
+│   │   ├── NotificationsRouter.ts
+│   │   ├── ResumeSkillsRouter.ts
+│   │   ├── ResumesRouter.ts
+│   │   ├── SkillRouter.ts
+│   │   ├── UserRouter.ts
+│   │   ├── VacancyRouter.ts
+│   │   ├── VacancySkillsRouter.ts
+│   ├── utils/
+│       ├── validators/
+│           ├── Validator.ts
+│           ├── applications/
+│           │   ├── ApplicationValidator.ts
+│           ├── certifications/
+│           │   ├── CertificationValidator.ts
+│           ├── educations/
+│           │   ├── EducationValidator.ts
+│           ├── experiences/
+│           │   ├── ExperienceValidator.ts
+│           ├── languages/
+│           │   ├── LanguageValidator.ts
+│           ├── locations/
+│           │   ├── LocationValidator.ts
+│           ├── matches/
+│           │   ├── MatchValidator.ts
+│           ├── notificationTypes/
+│           │   ├── NotificationTypeValidator.ts
+│           ├── notifications/
+│           │   ├── NotificationValidator.ts
+│           ├── resumeSkills/
+│           │   ├── ResumeSkillsValidator.ts
+│           ├── resumes/
+│           │   ├── ResumeValidator.ts
+│           ├── skills/
+│           │   ├── SkillValidator.ts
+│           ├── users/
+│           │   ├── UserValidator.ts
+│           ├── vacancies/
+│           │   ├── VacancyValidator.ts
+│           ├── vacancySkills/
+│               ├── VacancySkillsValidator.ts
+├── configs/
+│   ├── app-data-source.ts
+│   ├── jwt-config.ts
+├── core/
+│   ├── entities/
+│   │   ├── ApplicationEntity.ts
+│   │   ├── CertificationEntity.ts
+│   │   ├── EducationEntity.ts
+│   │   ├── ExperienceEntity.ts
+│   │   ├── LanguageEntity.ts
+│   │   ├── LocationEntity.ts
+│   │   ├── MatchEntity.ts
+│   │   ├── NotificationEntity.ts
+│   │   ├── NotificationTypeEntity.ts
+│   │   ├── ResumeEntity.ts
+│   │   ├── ResumeSkillsEntity.ts
+│   │   ├── SkillEntity.ts
+│   │   ├── UserEntity.ts
+│   │   ├── VacancyEntity.ts
+│   │   ├── VacancySkillsEntity.ts
+│   ├── repositories/
+│   │   ├── ApplicationRepository.ts
+│   │   ├── CertificationRepository.ts
+│   │   ├── EducationRepository.ts
+│   │   ├── ExperienceRepository.ts
+│   │   ├── LanguageRepository.ts
+│   │   ├── LocationRepository.ts
+│   │   ├── MatchRepository.ts
+│   │   ├── NotificationRepository.ts
+│   │   ├── NotificationTypeRepository.ts
+│   │   ├── ResumeRepository.ts
+│   │   ├── ResumeSkillsRepository.ts
+│   │   ├── SkillRepository.ts
+│   │   ├── UserRepository.ts
+│   │   ├── VacancyRepository.ts
+│   │   ├── VacancySkillsRepository.ts
+│   ├── services/
+│       ├── applications/
+│       │   ├── ApplicationService.ts
+│       ├── certifications/
+│       │   ├── CertificationService.ts
+│       ├── educations/
+│       │   ├── EducationService.ts
+│       ├── experiences/
+│       │   ├── ExperienceService.ts
+│       ├── languages/
+│       │   ├── LanguageService.ts
+│       ├── locations/
+│       │   ├── LocationService.ts
+│       ├── matches/
+│       │   ├── MatchService.ts
+│       ├── notificationTypes/
+│       │   ├── NotificationTypeService.ts
+│       ├── notifications/
+│       │   ├── NotificationService.ts
+│       ├── resumeSkills/
+│       │   ├── ResumeSkillsService.ts
+│       ├── resumes/
+│       │   ├── ResumeService.ts
+│       ├── skills/
+│       │   ├── SkillService.ts
+│       ├── users/
+│       │   ├── UserService.ts
+│       ├── vacancies/
+│       │   ├── VacancyService.ts
+│       ├── vacancySkills/
+│           ├── VacancySkillsService.ts
+├── index.ts
+├── migration/
+├── subscriber/
+├── types/
+│   ├── user/
+│       ├── authentication.d.ts
+│       ├── index.ts
+├── utils/
+    ├── errorHandler.ts
+    ├── jwtHelper.ts
+    ├── logger.ts
+    ├── redisHelper.ts
+
+File: index.ts
+import "reflect-metadata";
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import compression from 'compression';
+import morgan from 'morgan';
+import { AppDataSource } from './configs/app-data-source';
+import MainRouter from './api/routes/MainRouter'; 
+import logger from './utils/logger';
+import errorHandler from "./utils/errorHandler";
+
+async function startServer() {
+    try {
+        await AppDataSource.initialize(); 
+        console.log('Источник данных успешно инициализирован');
+        logger.info('Источник данных успешно инициализирован');
+
+        const app = express();
+
+        app.use(helmet());
+        app.use(cors());
+        app.use(compression());
+        app.use(express.json());
+        app.use(express.urlencoded({ extended: true }));
+        app.use('/api', MainRouter);
+app.use(errorHandler); 
+        const port = 5000;
+        app.listen(port, () => {
+            console.log(`Сервер запущен на порту ${port}`);
+        });
+    } catch (error) {
+        console.error('Ошибка инициализации источника данных:', error);
+    }
+}
+
+startServer(); 
+
+
+
+File: api/routes/ApplicationRoutes.ts
+import express, { Request, Response } from 'express';
+import {  createApplication, getAllApplications } from '../controllers/applications/ApplicationController';
+import { ApplicationValidatorValidationRules } from '../utils/validators/applications/ApplicationValidator';
+import { validate } from '../utils/validators/Validator';
+
+const UserRouter = express.Router();
+
+UserRouter.post(
+    '/create',
+    ApplicationValidatorValidationRules(),
+    validate,
+    createApplication
+  );
+
+UserRouter.post('/get_all', getAllApplications);
+
+export default UserRouter;
+
+
+
+File: api/routes/VacancySkillsRouter.ts
+import express, { Request, Response } from 'express';
+import {  createVacancySkills, getAllVacancySkills } from '../controllers/vacancySkills/VacancySkillsController';
+import { VacancySkillsValidatorValidationRules } from '../utils/validators/vacancySkills/VacancySkillsValidator';
+import { validate } from '../utils/validators/Validator';
+
+const VacancySkillsRouter = express.Router();
+
+VacancySkillsRouter.post(
+    '/create',
+    VacancySkillsValidatorValidationRules(),
+    validate,
+    createVacancySkills
+  );
+VacancySkillsRouter.post('/get_all', getAllVacancySkills);
+
+export default VacancySkillsRouter;
+
+
+
+File: api/routes/NotificationTypeRouter.ts
+import express, { Request, Response } from 'express';
+import {  createNotificationType, getAllNotificationTypes } from '../controllers/notificationTypes/NotificationTypeController';
+import { NotificationTypeValidatorValidationRules } from '../utils/validators/notificationTypes/NotificationTypeValidator';
+import { validate } from '../utils/validators/Validator';
+
+const NotificationTypeRouter = express.Router();
+
+NotificationTypeRouter.post(
+    '/create',
+    NotificationTypeValidatorValidationRules(),
+    validate, 
+);
+
+NotificationTypeRouter.post('/get_all', getAllNotificationTypes);
+
+export default NotificationTypeRouter;
+
+File: api/routes/ExperienceRouter.ts
+import express, { Request, Response } from 'express';
+import {  createExperience, getAllExperiences } from '../controllers/experiences/ExperienceController';
+import { ExperienceValidatorValidationRules } from '../utils/validators/experiences/ExperienceValidator';
+import { validate } from '../utils/validators/Validator';
+
+const UserRouter = express.Router();
+
+UserRouter.post(
+    '/create',
+    ExperienceValidatorValidationRules(),
+    validate,
+    createExperience
+  );
+
+UserRouter.post('/get_all', getAllExperiences);
+
+export default UserRouter;
+
+
+
+File: api/routes/LocationRouter.ts
+import express, { Request, Response } from 'express';
+import {  createLocation, getAllLocations } from '../controllers/locations/LocationController';
+import { LocationValidatorValidationRules } from '../utils/validators/locations/LocationValidator';
+import { validate } from '../utils/validators/Validator';
+
+const UserRouter = express.Router();
+
+UserRouter.post(
+    '/create',
+    LocationValidatorValidationRules(),
+    validate,
+    createLocation
+  );
+
+UserRouter.post('/get_all', getAllLocations);
+
+export default UserRouter;
+
+
+
+File: api/routes/SkillRouter.ts
+import express, { Request, Response } from 'express';
+import {  createSkill, getAllSkills } from '../controllers/skills/SkillController';
+import { SkillValidatorValidationRules } from '../utils/validators/skills/SkillValidator';
+import { validate } from '../utils/validators/Validator';
+
+const SkillRouter = express.Router();
+
+SkillRouter.post(
+    '/create',
+    SkillValidatorValidationRules(),
+    validate,
+    createSkill
+  );
+SkillRouter.post('/get_all', getAllSkills);
+
+export default SkillRouter;
+
+
+
+File: api/routes/MatchesRouter.ts
+import express, { Request, Response } from 'express';
+import {  createMatch, getAllMatches } from '../controllers/matches/MatchesController';
+import { MatchValidatorValidationRules } from '../utils/validators/matches/MatchValidator';
+import { validate } from '../utils/validators/Validator';
+
+const MatchRouter = express.Router();
+
+MatchRouter.post(
+    '/create',
+    MatchValidatorValidationRules(),
+    validate,
+    createMatch
+  );
+MatchRouter.post('/get_all', getAllMatches);
+
+export default MatchRouter;
+
+
+File: api/routes/UserRouter.ts
+import express, { Request, Response } from 'express';
+import {  createUser, getAllUsers, authenticateUser } from '../controllers/users/UserController';
+import { userValidationRules , userDyEmailValidationRules} from '../utils/validators/users/UserValidator';
+import { validate } from '../utils/validators/Validator';
+
+const UserRouter = express.Router();
+
+UserRouter.post(
+    '/create',
+    userValidationRules(),
+    validate,
+    createUser
+  );
+
+UserRouter.post('/get_all', getAllUsers);
+
+UserRouter.post('/authorize',
+  userDyEmailValidationRules(),
+  validate,
+  authenticateUser
+ );
+
+export default UserRouter;
+
+// export default router;
+
+File: api/routes/VacancyRouter.ts
+import express, { Request, Response } from 'express';
+import {  createVacancy, getAllVacancies } from '../controllers/vacancies/VacancyController';
+import { SkillValidatorValidationRules } from '../utils/validators/skills/SkillValidator';
+import { validate } from '../utils/validators/Validator';
+
+const VacancyRouter = express.Router();
+
+VacancyRouter.post(
+    '/create',
+    SkillValidatorValidationRules(),
+    validate,
+    createVacancy
+  );
+VacancyRouter.post('/get_all', getAllVacancies);
+
+export default VacancyRouter;
+
+
+
+File: api/routes/CertificationRouter.ts
+import express, { Request, Response } from 'express';
+import {  createUser, getAllUsers } from '../controllers/users/UserController';
+import { userValidationRules } from '../utils/validators/users/UserValidator';
+import { validate } from '../utils/validators/Validator';
+
+const UserRouter = express.Router();
+
+UserRouter.post(
+    '/create',
+    userValidationRules(),
+    validate,
+    createUser
+  );
+
+UserRouter.post('/get_all', getAllUsers);
+
+export default UserRouter;
+
+
+
+File: api/routes/LanguageRouter.ts
+import express, { Request, Response } from 'express';
+import {  createLanguage, getAllLanguages } from '../controllers/languages/LanguageController';
+import { LanguageValidatorValidationRules } from '../utils/validators/languages/LanguageValidator';
+import { validate } from '../utils/validators/Validator';
+
+const UserRouter = express.Router();
+
+UserRouter.post(
+    '/create',
+    LanguageValidatorValidationRules(),
+    validate,
+    createLanguage
+  );
+
+UserRouter.post('/get_all', getAllLanguages);
+
+export default UserRouter;
+
+
+
+File: api/routes/ResumesRouter.ts
+import express, { Request, Response } from 'express';
+import {  createResume, getAllResume } from '../controllers/resumes/ResumesController';
+import { ResumeValidatorValidationRules } from '../utils/validators/resumes/ResumeValidator';
+import { validate } from '../utils/validators/Validator';
+
+const ResumeRouter = express.Router();
+
+ResumeRouter.post(
+    '/create',
+    ResumeValidatorValidationRules(),
+    validate,
+    createResume
+  );
+ResumeRouter.post('/get_all', getAllResume);
+
+export default ResumeRouter;
+
+
+
+File: api/routes/MainRouter.ts
+import express from 'express';
+import ApplicationRoutes  from './ApplicationRoutes';
+import CertificationRouter from './CertificationRouter';
+import EducationRouter from './EducationRouter';
+import ExperienceRouter from './ExperienceRouter';
+import LanguageRouter from './LanguageRouter';
+import LocationRouter from './LocationRouter';
+import NotificationTypeRouter from './NotificationTypeRouter';
+import MatchRouter from './MatchesRouter';
+import NotificationRouter from './NotificationsRouter';
+import ResumeRouter from './ResumesRouter';
+import ResumeSkillsRouter from './ResumeSkillsRouter';
+import SkillRouter from './SkillRouter';
+import UserRouter from './UserRouter';
+import VacancyRouter from './VacancyRouter';
+import VacancySkillsRouter from './VacancySkillsRouter';
+
+const MainRouter = express.Router();
+
+MainRouter.use('/matches', MatchRouter);
+MainRouter.use('/notifications', NotificationRouter);
+MainRouter.use('/resumes', ResumeRouter);
+MainRouter.use('/resume_skills', ResumeSkillsRouter);
+MainRouter.use('/skills', SkillRouter);
+MainRouter.use('/users', UserRouter);
+MainRouter.use('/vacancies', VacancyRouter);
+MainRouter.use('/vacancy_skills', VacancySkillsRouter);
+MainRouter.use('/applications', ApplicationRoutes);
+MainRouter.use('/languages', LanguageRouter);
+MainRouter.use('/educations', EducationRouter);
+MainRouter.use('/experiences', ExperienceRouter);
+MainRouter.use('/locations', LocationRouter);
+MainRouter.use('/notification_types', NotificationTypeRouter);
+MainRouter.use('/certifications', CertificationRouter);
+
+export default MainRouter;
+
+
+
+File: api/routes/NotificationsRouter.ts
+import express, { Request, Response } from 'express';
+import {  createNotification, getAllNotification } from '../controllers/notifications/NotificationsController';
+import { NotificationValidatorValidationRules } from '../utils/validators/notifications/NotificationValidator';
+import { validate } from '../utils/validators/Validator';
+
+const NotificationRouter = express.Router();
+
+NotificationRouter.post(
+    '/create',
+    NotificationValidatorValidationRules(),
+    validate,
+    createNotification
+  );
+NotificationRouter.post('/get_all', getAllNotification);
+
+export default NotificationRouter;
+
+
+
+File: api/routes/EducationRouter.ts
+import express, { Request, Response } from 'express';
+import { createEducation, getAllEducations } from '../controllers/educations/EducationController';
+import { userValidationRules } from '../utils/validators/users/UserValidator';
+import { validate } from '../utils/validators/Validator';
+
+const UserRouter = express.Router();
+
+UserRouter.post(
+    '/create',
+    userValidationRules(),
+    validate,
+    createEducation
+  );
+
+UserRouter.post('/get_all', getAllEducations);
+
+export default UserRouter;
+
+
+
+File: api/routes/ResumeSkillsRouter.ts
+import express, { Request, Response } from 'express';
+import {  createResumeSkills, getAllResumeSkills } from '../controllers/resumeSkills/ResumeSkillsController';
+import { ResumeSkillsValidatorValidationRules } from '../utils/validators/resumeSkills/ResumeSkillsValidator';
+import { validate } from '../utils/validators/Validator';
+
+const ResumeSkillsRouter = express.Router();
+
+ResumeSkillsRouter.post(
+    '/create',
+    ResumeSkillsValidatorValidationRules(),
+    validate,
+);
+
+ResumeSkillsRouter.post('/get_all', getAllResumeSkills);
+
+export default ResumeSkillsRouter;
+
+
+
+File: api/utils/validators/Validator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+import logger from '../../../utils/logger';
+
+export const validate = (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const errorMessages = errors.array().map(error => error.msg);
+        logger.error(errorMessages);
+        return res.status(400).json({ errors: errorMessages });
+    }
+    next();
+}
+// }
+
+File: api/utils/validators/matches/MatchValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const MatchValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+  
+
+File: api/utils/validators/locations/LocationValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const LocationValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+  
+
+File: api/utils/validators/vacancySkills/VacancySkillsValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const VacancySkillsValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+  
+
+File: api/utils/validators/notificationTypes/NotificationTypeValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const NotificationTypeValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+File: api/utils/validators/skills/SkillValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const SkillValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+File: api/utils/validators/experiences/ExperienceValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const ExperienceValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+File: api/utils/validators/applications/ApplicationValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const ApplicationValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+  
+
+File: api/utils/validators/users/UserValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const userValidationRules = () => [
+  body('name').notEmpty().withMessage('Имя обязательно'),
+  body('surname').notEmpty().withMessage('Фамилия обязательно'),
+  body('email').isEmail().withMessage('Некорректный email'),
+  body('password').isLength({ min: 8 }).withMessage('Пароль должен быть не менее 8 символов'),
+];
+
+export const userDyEmailValidationRules = () => [
+  body('email').isEmail().withMessage('Некорректный email'),
+  body('password').isLength({ min: 8 }).withMessage('Пароль должен быть не менее 8 символов'),
+]
+
+
+
+File: api/utils/validators/vacancies/VacancyValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const VacancyValidatorValidationRules = () => [
+  body('name').notEmpty().withMessage('Имя обязательно'),
+];
+
+
+File: api/utils/validators/resumes/ResumeValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const ResumeValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+File: api/utils/validators/certifications/CertificationValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const CertificationValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+  
+
+File: api/utils/validators/languages/LanguageValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const LanguageValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+File: api/utils/validators/resumeSkills/ResumeSkillsValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const ResumeSkillsValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+
+File: api/utils/validators/notifications/NotificationValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const NotificationValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+
+File: api/utils/validators/educations/EducationValidator.ts
+import { body, validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
+export const EducationValidatorValidationRules = () => [
+    body('name').notEmpty().withMessage('Имя обязательно'),
+  ];
+
+
+File: api/controllers/matches/MatchesController.ts
+import { Request, Response } from "express";
+import { MatchService } from "../../../core/services/matches/MatchService";
+import { MatchEntity } from "../../../core/entities/MatchEntity";
+import logger from "../../../utils/logger";
+
+const matchService = new MatchService();
+
+export const createMatch = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newMatchData: MatchEntity = req.body;
+        const newMatch = await matchService.createMatch(newMatchData);
+        res.json(newMatch);
+    } catch (error) {
+        logger.error(error.stack);
+        res.status(500).json({ error: 'Ошибка при создании совпадения' });
+    }
+}
+
+export const getAllMatches = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const matches = await matchService.getAllMatches();
+        res.json(matches);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении совпадений' });
+    }
+}
+
+
+File: api/controllers/locations/LocationController.ts
+import { Request, Response } from 'express';
+import { LocationService } from '../../../core/services/locations/LocationService';
+import { LocationEntity } from '../../../core/entities/LocationEntity';
+import logger from '../../../utils/logger';
+
+const locationService = new LocationService();
+
+export const getAllLocations = async (req: Request, res: Response) => {
+  try {
+    const locations = await locationService.getAllLocations();
+    res.status(200).json(locations);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to get locations' });
+  }
+};
+
+export const createLocation = async (req: Request, res: Response) => {
+  try {
+    const locationData: LocationEntity = req.body;
+    const newLocation = await locationService.createLocation(locationData);
+    res.status(201).json(newLocation);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to create location' });
+  }
+};
+
+File: api/controllers/vacancySkills/VacancySkillsController.ts
+import { Request, Response } from "express";
+import { VacancySkillsService } from "../../../core/services/vacancySkills/VacancySkillsService";
+import { VacancySkillsEntity } from "../../../core/entities/VacancySkillsEntity";
+import logger from "../../../utils/logger";
+
+const vacancySkillsService = new VacancySkillsService();
+
+export const createVacancySkills = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newVacancySkillsData: VacancySkillsEntity = req.body;
+        const newVacancySkills = await vacancySkillsService.createVacancySkill(newVacancySkillsData);
+        res.json(newVacancySkills);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при создании вакансии' });
+    }
+}
+
+export const getAllVacancySkills = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const vacancySkills = await vacancySkillsService.findAllVacancySkill();
+        res.json(vacancySkills);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении вакансий' });
+    }
+}
+
+
+File: api/controllers/notificationTypes/NotificationTypeController.ts
+import { Request, Response } from 'express';
+import { NotificationTypeService } from '../../../core/services/notificationTypes/NotificationTypeService';
+import { NotificationTypeEntity } from '../../../core/entities/NotificationTypeEntity';
+import logger from '../../../utils/logger';
+
+const notificationTypeService = new NotificationTypeService();
+
+export const getAllNotificationTypes = async (req: Request, res: Response) => {
+  try {
+    const notificationTypes = await notificationTypeService.getAllNotificationTypes();
+    res.status(200).json(notificationTypes);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to get notification types' });
+  }
+};
+
+export const createNotificationType = async (req: Request, res: Response) => {
+  try {
+    const notificationTypeData: NotificationTypeEntity = req.body;
+    const newNotificationType = await notificationTypeService.createNotificationType(notificationTypeData);
+    res.status(201).json(newNotificationType);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to create notification type' });
+  }
+};
+
+File: api/controllers/skills/SkillController.ts
+import { Request, Response } from "express";
+import { SkillService } from "../../../core/services/skills/SkillService";
+import { SkillEntity } from "../../../core/entities/SkillEntity";
+import logger from "../../../utils/logger";
+
+const skillService = new SkillService();
+
+export const createSkill = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newSkillData: SkillEntity = req.body;
+        const newSkill = await skillService.createSkill(newSkillData);
+        res.json(newSkill);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при создании навыка' });
+    }
+}
+
+export const getAllSkills = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const skills = await skillService.getAllSkills();
+        res.json(skills);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении навыков' });
+    }
+}
+
+
+
+File: api/controllers/experiences/ExperienceController.ts
+import { Request, Response } from 'express';
+import { ExperienceService } from '../../../core/services/experiences/ExperienceService';
+import { ExperienceEntity } from '../../../core/entities/ExperienceEntity';
+import logger from '../../../utils/logger';
+
+const experienceService = new ExperienceService();
+
+export const getAllExperiences = async (req: Request, res: Response) => {
+  try {
+    const experiences = await experienceService.getAllExperiences();
+    res.status(200).json(experiences);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to get experiences' });
+  }
+};
+
+export const createExperience = async (req: Request, res: Response) => {
+  try {
+    const experienceData: ExperienceEntity = req.body;
+    const newExperience = await experienceService.createExperience(experienceData);
+    res.status(201).json(newExperience);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to create experience' });
+  }
+};
+
+File: api/controllers/applications/ApplicationController.ts
+
+import { Request, Response } from 'express';
+import { ApplicationService } from '../../../core/services/applications/ApplicationService';
+import { ApplicationEntity } from '../../../core/entities/ApplicationEntity'; 
+import logger from '../../../utils/logger';
+
+const applicationService = new ApplicationService();
+
+export const createApplication = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const newApplication = await applicationService.createApplication(req.body as ApplicationEntity);
+    res.status(201).json(newApplication);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Ошибка при создании заявки' });
+  }
+};
+
+export const getAllApplications = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const applications = await applicationService.getAllApplications();
+    res.json(applications);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Ошибка при получении заявок' });
+  }
+};
+
+// git clone https://github.com/anton84tiunov/express-work_pimp_2.git
+
+File: api/controllers/users/UserController.ts
+
+import { Request, Response } from "express";
+import { UserService } from "../../../core/services/users/UserService";
+import { UserEntity } from "../../../core/entities/UserEntity";
+import logger from "../../../utils/logger";
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../../../utils/jwtHelper';
+import redisSingleton from '../../../utils/redisHelper';
+import Redis from 'ioredis';
+
+const userService = new UserService();
+export const createUser = async (req: Request, res: Response): Promise<void> => {
+
+    try {
+        const newUser = await userService.createUser(req.body as UserEntity);
+        res.status(201).json(newUser);
+    } catch (error) {
+        logger.error(error.stack);
+        if (error.code === 'ER_DUP_ENTRY') {
+            logger.error(error);
+            res.status(400).json({ error: 'Пользователь с таким email уже существует' });
+        } else {
+            logger.error(error);
+            res.status(500).json({ error: 'Ошибка при создании пользователя' });
+        }
+        logger.error(error.stack);
+    }
+};
+
+export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const users = await userService.getAllUsers();
+        res.json(users);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении пользователей' });
+    }
+};
+
+export const authenticateUser = async (req: Request, res: Response): Promise<void> => {
+    const redis = new Redis();
+    try {
+        const { email, password } = req.body;
+        const user = await userService.authenticateUser(email, password);
+        if (!user.user) {
+            console.log(user.error);
+            res.status(400).json({ error: user.error });
+        }else{
+            const accessToken = generateAccessToken(user.user.user_id.toString());
+            const refreshToken = generateRefreshToken(user.user.user_id.toString());
+            const email = user.user.email;
+            const id = user.user.user_id.toString()
+            const dataToCache = { id: refreshToken };
+            await redisSingleton.set(`user:${id}:refreshToken`, JSON.stringify(dataToCache), 3600); 
+            const cachedData = await redisSingleton.get(`user:${id}:refreshToken`);
+            console.log(cachedData);
+            res.json({ email, accessToken, refreshToken });
+        }
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при аутентификации пользователя' });
+    }
+};
+
+export const refreshToken = async (req: Request, res: Response): Promise<void> => {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      res.status(401).json({ error: 'Refresh token is missing' });
+    } else {
+      try {
+        const payload = verifyRefreshToken(refreshToken);
+        if (typeof payload === 'string') {
+          res.status(403).json({ error: payload });
+        } else {
+          const userId = payload.userId;
+          const storedRefreshToken = await redisSingleton.get(`user:${userId}:refreshToken`);
+          if (!storedRefreshToken || storedRefreshToken !== refreshToken) {
+            res.status(403).json({ error: 'Invalid refresh token' });
+          } else {
+            const accessToken = generateAccessToken(userId);
+            res.json({ accessToken });
+          }
+        }
+      } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
+    }
+  };
+
+
+
+File: api/controllers/vacancies/VacancyController.ts
+import { Request, Response } from "express";
+import { VacancyService } from "../../../core/services/vacancies/VacancyService";
+import { VacancyEntity } from "../../../core/entities/VacancyEntity";
+import logger from "../../../utils/logger";
+
+const vacancyService = new VacancyService();
+
+export const createVacancy = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newVacancyData: VacancyEntity = req.body;
+        const newVacancy = await vacancyService.createVacancy(newVacancyData);
+        res.json(newVacancy);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при создании вакансии' });
+    }
+}
+
+export const getAllVacancies = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const vacancies = await vacancyService.findAllVacancy();
+        res.json(vacancies);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении вакансий' });
+    }
+}
+
+
+
+File: api/controllers/resumes/ResumesController.ts
+import { Request, Response } from "express";
+import { ResumeService } from "../../../core/services/resumes/ResumeService";
+import { ResumeEntity } from "../../../core/entities/ResumeEntity";
+import logger from "../../../utils/logger";
+
+const resumeService = new ResumeService();
+
+export const createResume = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newResumeData: ResumeEntity = req.body;
+        const newResume = await resumeService.createResume(newResumeData);
+        res.json(newResume);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при создании совпадения' });
+    }
+}
+
+export const getAllResume = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const resume = await resumeService.findAllResumes();
+        res.json(resume);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении совпадений' });
+    }
+}
+
+
+File: api/controllers/certifications/CertificationController.ts
+import { Request, Response } from 'express';
+import { CertificationService } from '../../../core/services/certifications/CertificationService';
+import { CertificationEntity } from '../../../core/entities/CertificationEntity';
+import logger from '../../../utils/logger';
+
+const certificationService = new CertificationService();
+
+export const createCertification = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const newCertification = await certificationService.createCertification(req.body as CertificationEntity);
+    res.status(201).json(newCertification);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Ошибка при создании сертификата' });
+  }
+};
+
+export const getAllCertifications = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const certifications = await certificationService.getAllCertifications();
+    res.json(certifications);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Ошибка при получении сертификатов' });
+  }
+};
+
+
+
+File: api/controllers/languages/LanguageController.ts
+import { Request, Response } from 'express';
+import { LanguageService } from '../../../core/services/languages/LanguageService';
+import { LanguageEntity } from '../../../core/entities/LanguageEntity';
+import logger from '../../../utils/logger';
+
+const languageService = new LanguageService();
+
+export const getAllLanguages = async (req: Request, res: Response) => {
+  try {
+    const languages = await languageService.getAllLanguages();
+    res.status(200).json(languages);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to get languages' });
+  }
+};
+
+export const createLanguage = async (req: Request, res: Response) => {
+  try {
+    const languageData: LanguageEntity = req.body;
+    const newLanguage = await languageService.createLanguage(languageData);
+    res.status(201).json(newLanguage);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Failed to create language' });
+  }
+};
+
+
+File: api/controllers/resumeSkills/ResumeSkillsController.ts
+import { Request, Response } from "express";
+import { ResumeSkillsService } from "../../../core/services/resumeSkills/ResumeSkillsService";
+import { ResumeSkillsEntity } from "../../../core/entities/ResumeSkillsEntity";
+import logger from "../../../utils/logger";
+
+const resumeSkillsService = new ResumeSkillsService();
+
+export const createResumeSkills = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newResumeSkillsData: ResumeSkillsEntity = req.body;
+        const newResumeSkills = await resumeSkillsService.createResumeSkill(newResumeSkillsData);
+        res.json(newResumeSkills);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при создании совпадения' });
+    }
+}
+
+export const getAllResumeSkills = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const resumeSkills = await resumeSkillsService.findAllResumeSkill();
+        res.json(resumeSkills);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении совпадений' });
+    }
+}
+
+
+File: api/controllers/notifications/NotificationsController.ts
+import { Request, Response } from "express";
+import { NotificationService } from "../../../core/services/notifications/NotificationService";
+import { NotificationEntity } from "../../../core/entities/NotificationEntity";
+import logger from "../../../utils/logger";
+
+const notificationService = new NotificationService();
+
+export const createNotification = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newNotificationData: NotificationEntity = req.body;
+        const newNotification = await notificationService.createNotification(newNotificationData);
+        res.json(newNotification);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при создании совпадения' });
+    }
+}
+
+export const getAllNotification = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const notification = await notificationService.findAllNotifications();
+        res.json(notification);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Ошибка при получении совпадений' });
+    }
+}
+
+
+
+File: api/controllers/educations/EducationController.ts
+import { Request, Response } from 'express';
+import { EducationService } from '../../../core/services/educations/EducationService';
+import { EducationEntity } from '../../../core/entities/EducationEntity';
+import logger from '../../../utils/logger';
+
+const educationService = new EducationService();
+
+export const createEducation = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const newEducation = await educationService.createEducation(req.body as EducationEntity);
+    res.status(201).json(newEducation);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Ошибка при создании образования' });
+  }
+};
+
+export const getAllEducations = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const educations = await educationService.getAllEducations();
+    res.json(educations);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Ошибка при получении образований' });
+  }
+};
+
+File: utils/logger.ts
+import winston, { format } from 'winston';
+import * as sourceMapSupport from 'source-map-support';
+import callsite from 'callsite';
+
+sourceMapSupport.install();
+
+const internalModuleRegex = /node_modules|winston|logform/;
+
+const logger = winston.createLogger({
+  level: 'info',
+  format: format.combine(
+    format.label({ label: 'site-service' }),
+    format.timestamp(),
+    format.printf(({ level, message, label, timestamp }) => {
+      const stack = callsite();
+      const callerInfo = stack.find(site => !internalModuleRegex.test(site.getFileName()));
+
+      if (callerInfo) {
+        const fileName = callerInfo.getFileName();
+        const lineNumber = callerInfo.getLineNumber();
+        console.log(`${timestamp} [${label}] ${fileName}:${lineNumber} ${level}: ${message}`);
+        return `${timestamp} [${label}] ${fileName}:${lineNumber} ${level}: ${message}`;
+      } else {
+        return `${timestamp} [${label}] ${level}: ${message}`;
+        console.log(`${timestamp} [${label}] ${level}: ${message}`);
+      }
+    })
+  ),
+  defaultMeta: { service: 'your-service' },
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'logs/combined.log' }),
+  ],
+});
+
+export default logger;
+
+File: utils/jwtHelper.ts
+import jwt from 'jsonwebtoken';
+
+const ACCESS_TOKEN_SECRET = 'your_access_token_secret';
+const REFRESH_TOKEN_SECRET = 'your_refresh_token_secret';
+
+export const generateAccessToken = (userId: string) => {
+  return jwt.sign({ userId }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+};
+
+export const generateRefreshToken = (userId: string) => {
+  return jwt.sign({ userId }, REFRESH_TOKEN_SECRET, { expiresIn: '86400s' }); 
+};
+
+export const verifyAccessToken = (token: string) => {
+  return jwt.verify(token, ACCESS_TOKEN_SECRET);
+};
+
+export const verifyRefreshToken = (token: string) => {
+  return jwt.verify(token, REFRESH_TOKEN_SECRET);
+};
+
+File: utils/redisHelper.ts
+import Redis, { RedisOptions, Redis as RedisClient } from 'ioredis';
+
+class RedisSingleton {
+  private static instance: RedisSingleton;
+  private redisClient: RedisClient;
+
+  private constructor(options: RedisOptions) {
+    this.redisClient = new Redis(options);
+  }
+
+  public static getInstance(options: RedisOptions): RedisSingleton {
+    if (!RedisSingleton.instance) {
+      RedisSingleton.instance = new RedisSingleton(options);
+    }
+    return RedisSingleton.instance;
+  }
+
+  public async set(key: string, value: string, expirationInSeconds?: number): Promise<void> {
+    if (expirationInSeconds) {
+      await this.redisClient.set(key, value, 'EX', expirationInSeconds);
+    } else {
+      await this.redisClient.set(key, value);
+    }
+  }
+
+  public async get(key: string): Promise<string | null> {
+    return await this.redisClient.get(key);
+  }
+
+  public async del(key: string): Promise<number> {
+    return await this.redisClient.del(key);
+  }
+
+  public async expire(key: string, expirationInSeconds: number): Promise<number> {
+    return await this.redisClient.expire(key, expirationInSeconds);
+  }
+
+  public async quit(): Promise<void> {
+    await this.redisClient.quit();
+  }
+}
+
+const redisOptions: RedisOptions = {
+  host: 'localhost',
+  port: 6379,
+};
+
+const redisSingleton = RedisSingleton.getInstance(redisOptions);
+
+export default redisSingleton;
+
+File: utils/errorHandler.ts
+import { Request, Response, NextFunction } from 'express';
+import logger from './logger';
+interface Error {
+  statusCode?: number;
+  message: string;
+  stack?: string;
+}
+
+const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error("errorHandler", err.stack);
+  logger.error(err.stack);
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    error: {
+      message: err.message,
+    },
+  });
+};
+
+export default errorHandler;
+
+File: types/user/authentication.d.ts
+import { UserEntity } from '../../core/entities/UserEntity';
+
+export type AuthenticationResult = {
+    success: boolean;
+    error?: string;
+    user?: UserEntity;
+};
+
+File: types/user/index.ts
+export * from './authentication';
+
+
+File: core/services/matches/MatchService.ts
+import logger from "../../../utils/logger";
+import { MatchEntity } from "../../entities/MatchEntity";
+import { MatchRepository } from "../../repositories/MatchRepository";
+
+export class MatchService {
+    async createMatch(matchData: MatchEntity): Promise<MatchEntity> {
+        try {
+            return await MatchRepository.save(matchData);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getAllMatches(): Promise<MatchEntity[]> {
+        try {
+            return await MatchRepository.find({ relations: ['resume', 'vacancy'] });
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+File: core/services/locations/LocationService.ts
+import logger from '../../../utils/logger';
+import { LocationEntity } from '../../entities/LocationEntity';
+import { LocationRepository } from '../../repositories/LocationRepository';
+
+export class LocationService{
+    async createLocation(locationData: LocationEntity): Promise<LocationEntity> {
+        try {
+          return await LocationRepository.save(locationData);
+        } catch (error) {
+          throw error;
+        }
+    }
+
+    async getAllLocations(): Promise<LocationEntity[]> {
+        try {
+          return await LocationRepository.find({ relations: ['users'] });
+        } catch (error) {
+          throw error;
+        }
+    }
+}
+
+
+File: core/services/vacancySkills/VacancySkillsService.ts
+import logger from "../../../utils/logger";
+import { VacancySkillsEntity } from "../../entities/VacancySkillsEntity";
+import { VacancySkillsRepository } from "../../repositories/VacancySkillsRepository";
+
+export class VacancySkillsService {
+    async createVacancySkill(vacancySkills: VacancySkillsEntity): Promise<VacancySkillsEntity> {
+        try {
+            return await VacancySkillsRepository.create(vacancySkills);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async findAllVacancySkill(): Promise<VacancySkillsEntity[]> {
+        try {
+            return await VacancySkillsRepository.find();
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+
+File: core/services/notificationTypes/NotificationTypeService.ts
+import logger from '../../../utils/logger';
+import { NotificationTypeEntity } from '../../entities/NotificationTypeEntity';
+import { NotificationTypeRepository } from '../../repositories/NotificationTypeRepository';
+
+export class NotificationTypeService{
+    async createNotificationType(notificationTypeData: NotificationTypeEntity): Promise<NotificationTypeEntity> {
+        try {
+          return await NotificationTypeRepository.save(notificationTypeData);
+        } catch (error) {
+          throw error;
+        }
+    }
+
+    async getAllNotificationTypes(): Promise<NotificationTypeEntity[]> {
+        try {
+          return await NotificationTypeRepository.find({ relations: ['notifications'] });
+        } catch (error) {
+          throw error;
+        }
+    }
+}
+
+
+File: core/services/skills/SkillService.ts
+import logger from "../../../utils/logger";
+import { SkillEntity } from "../../entities/SkillEntity";
+import { SkillRepository } from "../../repositories/SkillRepository";
+
+export class SkillService {
+    async createSkill(skillData: SkillEntity): Promise<SkillEntity> {
+        try {
+            return await SkillRepository.save(skillData);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getAllSkills(): Promise<SkillEntity[]> {
+        try {
+            return await SkillRepository.find({ relations: ['user'] });
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+File: core/services/experiences/ExperienceService.ts
+import logger from '../../../utils/logger';
+import { ExperienceEntity } from '../../entities/ExperienceEntity';
+import { ExperienceRepository } from '../../repositories/ExperienceRepository';
+
+export class ExperienceService{
+    async createExperience(experienceData: ExperienceEntity): Promise<ExperienceEntity> {
+        try {
+          return await ExperienceRepository.save(experienceData);
+        } catch (error) {
+          throw error;
+        }
+    }
+
+    async getAllExperiences(): Promise<ExperienceEntity[]> {
+        try {
+          return await ExperienceRepository.find({ relations: ['user'] });
+        } catch (error) {
+          throw error;
+        }
+    }
+}
+
+
+File: core/services/applications/ApplicationService.ts
+
+import logger from '../../../utils/logger';
+import { ApplicationEntity } from '../../entities/ApplicationEntity';
+import { ApplicationRepository } from '../../repositories/ApplicationRepository';
+
+export class ApplicationService {
+  async createApplication(applicationData: ApplicationEntity): Promise<ApplicationEntity> {
+    try {
+      return await ApplicationRepository.save(applicationData);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getAllApplications(): Promise<ApplicationEntity[]> {
+    try {
+      return await ApplicationRepository.find({ relations: ['user', 'vacancy'] });
+    } catch (error) {
+      throw error;
+    }
+  }
+}
+
+File: core/services/users/UserService.ts
+import bcrypt, { compare } from 'bcrypt';
+import { UserRepository } from "../../repositories/UserRepository";
+import { UserEntity } from "../../entities/UserEntity";
+import logger from "../../../utils/logger";
+import { AuthenticationResult } from '../../../types/user';
+
+const SECRET_KEY = 'your-secret-key-here';
+
+export class UserService {
+        async createUser(userData: UserEntity): Promise<UserEntity> {
+        try {
+            const salt = await bcrypt.genSalt(12);
+            const hashedPassword = await bcrypt.hash(userData.password + SECRET_KEY, salt);
+            userData.password = hashedPassword;
+            return await UserRepository.save(userData);
+        } catch (error) {
+            throw error;
+        }
+    }
+    async getAllUsers(): Promise<UserEntity[]> {
+        try {
+            return await UserRepository.find();
+        } catch (error) {
+            throw error;
+        }
+    }
+    async getUserByEmail(email: string): Promise<UserEntity> {
+        try {
+            return await UserRepository.findOne({
+                where: { email }
+            });
+        } catch (error) {
+            throw error;
+        }
+    }
+    async authenticateUser(email: string, password: string): Promise<AuthenticationResult> {
+        try {
+            const user = await UserRepository.findOne({ where: { email } });
+            if (!user) {
+                return { success: false, error: 'Пользователь не найден' };
+            }
+            const isPasswordValid = await bcrypt.compare(password + SECRET_KEY, user.password);
+            if (!isPasswordValid) {
+                return { success: false, error: 'Неверный пароль' };
+            }
+            return { success: true, user: user }
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+
+
+File: core/services/vacancies/VacancyService.ts
+import logger from "../../../utils/logger";
+import { VacancyEntity } from "../../entities/VacancyEntity";
+import { VacancyRepository } from "../../repositories/VacancyRepository";
+
+export class VacancyService {
+    async createVacancy(vacancy: VacancyEntity): Promise<VacancyEntity> {
+        try {
+            return await VacancyRepository.create(vacancy);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async findAllVacancy(): Promise<VacancyEntity[]> {
+        try {
+            return await VacancyRepository.find();
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+
+
+File: core/services/resumes/ResumeService.ts
+import logger from "../../../utils/logger";
+import { ResumeEntity } from "../../entities/ResumeEntity";
+import { ResumeRepository } from "../../repositories/ResumeRepository";
+
+export class ResumeService {
+    async createResume(resume: ResumeEntity): Promise<ResumeEntity> {
+        try {
+            return await ResumeRepository.save(resume);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async findAllResumes(): Promise<ResumeEntity[]> {
+        try {
+            return await ResumeRepository.find();
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+
+
+File: core/services/certifications/CertificationService.ts
+import logger from '../../../utils/logger';
+import { CertificationEntity } from '../../entities/CertificationEntity';
+import { CertificationRepository } from '../../repositories/CertificationRepository';
+
+export class CertificationService{
+    async createCertification(certificationData: CertificationEntity): Promise<CertificationEntity> {
+        try {
+          return await CertificationRepository.save(certificationData);
+        } catch (error) {
+          throw error;
+        }
+    }
+
+    async getAllCertifications(): Promise<CertificationEntity[]> {
+        try {
+          return await CertificationRepository.find({ relations: ['user'] });
+        } catch (error) {
+          throw error;
+        }
+    }
+}
+
+
+
+File: core/services/languages/LanguageService.ts
+import logger from '../../../utils/logger';
+import { LanguageEntity } from '../../entities/LanguageEntity';
+import { LanguageRepository } from '../../repositories/LanguageRepository';
+
+export class LanguageService{
+    async createLanguage(languageData: LanguageEntity): Promise<LanguageEntity> {
+        try {
+          return await LanguageRepository.save(languageData);
+        } catch (error) {
+          throw error;
+        }
+    }
+
+    async getAllLanguages(): Promise<LanguageEntity[]> {
+        try {
+          return await LanguageRepository.find({ relations: ['users'] });
+        } catch (error) {
+          throw error;
+        }
+    }
+}
+
+
+File: core/services/resumeSkills/ResumeSkillsService.ts
+import logger from "../../../utils/logger";
+import { ResumeSkillsEntity } from "../../entities/ResumeSkillsEntity";
+import { ResumeSkillsRepository } from "../../repositories/ResumeSkillsRepository";
+
+export class ResumeSkillsService {
+    async createResumeSkill(resume_skill: ResumeSkillsEntity): Promise<ResumeSkillsEntity> {
+        try {
+            return await ResumeSkillsRepository.save(resume_skill);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async findAllResumeSkill(): Promise<ResumeSkillsEntity[]> {
+        try {
+            return await ResumeSkillsRepository.find();
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+File: core/services/notifications/NotificationService.ts
+import logger from "../../../utils/logger";
+import { NotificationEntity } from "../../entities/NotificationEntity";
+import { NotificationRepository } from "../../repositories/NotificationRepository";
+
+export class NotificationService {
+    async createNotification(notification: NotificationEntity): Promise<NotificationEntity> {
+        try {
+            return await NotificationRepository.save(notification);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async findAllNotifications(): Promise<NotificationEntity[]> {
+        try {
+            return await NotificationRepository.find();
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+
+
+File: core/services/educations/EducationService.ts
+import logger from '../../../utils/logger';
+import { EducationEntity } from '../../entities/EducationEntity';
+import { EducationRepository } from '../../repositories/EducationRepository';
+
+export class EducationService{
+    async createEducation(educationData: EducationEntity): Promise<EducationEntity> {
+        try {
+          return await EducationRepository.save(educationData);
+        } catch (error) {
+          throw error;
+        }
+    }
+
+    async getAllEducations(): Promise<EducationEntity[]> {
+        try {
+          return await EducationRepository.find({ relations: ['user'] });
+        } catch (error) {
+          throw error;
+        }
+    }
+}
+
+
+File: core/entities/CertificationEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class CertificationEntity {
+    @PrimaryGeneratedColumn()
+    certification_id: number;
+
+    @Column({ length: 100 })
+    name: string;
+
+    @Column({ type: 'date' })
+    date_earned: Date;
+
+    @ManyToOne(() => UserEntity, user => user.certifications)
+    user: UserEntity;
+}
+
+File: core/entities/EducationEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class EducationEntity {
+    @PrimaryGeneratedColumn()
+    education_id: number;
+
+    @Column({ length: 100 })
+    institution: string;
+
+    @Column({ length: 100 })
+    degree: string;
+
+    @OneToMany(() => UserEntity, user => user.education)
+    users: UserEntity[];
+}
+
+File: core/entities/MatchEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { ResumeEntity } from './ResumeEntity';
+import { VacancyEntity } from './VacancyEntity';
+
+@Entity()
+export class MatchEntity {
+    @PrimaryGeneratedColumn()
+    match_id: number;
+
+    @ManyToOne(() => ResumeEntity, resume => resume.matches)
+    resume: ResumeEntity;
+
+    @ManyToOne(() => VacancyEntity, vacancy => vacancy.matches)
+    vacancy: VacancyEntity;
+
+    @Column({ type: 'float', default: 0.0 })
+    match_score: number;
+
+    @Column({ length: 50, default: 'pending' })
+    status: string;
+}
+
+
+
+File: core/entities/VacancyEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { VacancySkillsEntity } from './VacancySkillsEntity';
+import { MatchEntity } from './MatchEntity';
+import { LocationEntity } from './LocationEntity';
+import { ApplicationEntity } from './ApplicationEntity';
+
+@Entity()
+export class VacancyEntity {
+    @PrimaryGeneratedColumn()
+    vacancy_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.vacancies)
+    user: UserEntity;
+
+    @Column({ length: 100 })
+    title: string;
+
+    @Column({ type: 'text' })
+    description: string;
+
+    @OneToMany(() => VacancySkillsEntity, vacancySkill => vacancySkill.vacancy)
+    skills: VacancySkillsEntity[];
+
+    @OneToMany(() => MatchEntity, match => match.vacancy)
+    matches: MatchEntity[];
+
+    @ManyToOne(() => LocationEntity, location => location.vacancies)
+    location: LocationEntity;
+
+    @OneToMany(() => ApplicationEntity, application => application.vacancy)
+    applications: ApplicationEntity[];
+}
+
+
+
+File: core/entities/NotificationEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { NotificationTypeEntity } from './NotificationTypeEntity';
+
+@Entity()
+export class NotificationEntity {
+    @PrimaryGeneratedColumn()
+    notification_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.notifications)
+    user: UserEntity;
+
+    @ManyToOne(() => NotificationTypeEntity, notificationType => notificationType.notifications)
+    notificationType: NotificationTypeEntity;
+
+    @Column({ length: 255 })
+    message: string;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    sent_date: Date;
+}
+
+
+File: core/entities/LanguageEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class LanguageEntity {
+    @PrimaryGeneratedColumn()
+    language_id: number;
+
+    @Column({ length: 50 })
+    name: string;
+
+    @ManyToMany(() => UserEntity, user => user.languages)
+    @JoinTable()
+    users: UserEntity[];
+}
+
+File: core/entities/VacancySkillsEntity.ts
+import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { VacancyEntity } from './VacancyEntity';
+import { SkillEntity } from './SkillEntity';
+
+@Entity()
+export class VacancySkillsEntity {
+    @PrimaryGeneratedColumn()
+    vacancy_skill_id: number;
+
+    @ManyToOne(() => VacancyEntity, vacancy => vacancy.skills)
+    vacancy: VacancyEntity;
+
+    @ManyToOne(() => SkillEntity, skill => skill.users)
+    skill: SkillEntity;
+}
+
+
+
+File: core/entities/NotificationTypeEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { NotificationEntity } from './NotificationEntity';
+
+@Entity()
+export class NotificationTypeEntity {
+    @PrimaryGeneratedColumn()
+    notification_type_id: number;
+
+    @Column({ length: 50 })
+    name: string;
+
+    @OneToMany(() => NotificationEntity, notification => notification.notificationType)
+    notifications: NotificationEntity[];
+}
+
+File: core/entities/ExperienceEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class ExperienceEntity {
+    @PrimaryGeneratedColumn()
+    experience_id: number;
+
+    @Column({ length: 100 })
+    company: string;
+
+    @Column({ length: 100 })
+    position: string;
+
+    @Column({ type: 'date' })
+    start_date: Date;
+
+    @Column({ type: 'date', nullable: true })
+    end_date: Date;
+
+    @OneToMany(() => UserEntity, user => user.experience)
+    users: UserEntity[];
+}
+
+File: core/entities/SkillEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+
+@Entity()
+export class SkillEntity {
+    @PrimaryGeneratedColumn()
+    skill_id: number;
+
+    @Column({ length: 100 })
+    name: string;
+
+    @ManyToMany(() => UserEntity, user => user.skills)
+    users: UserEntity[];
+}
+
+
+
+File: core/entities/ResumeEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { ResumeSkillsEntity } from './ResumeSkillsEntity';
+import { MatchEntity } from './MatchEntity';
+
+@Entity()
+export class ResumeEntity {
+    @PrimaryGeneratedColumn()
+    resume_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.resumes)
+    user: UserEntity;
+
+    @Column({ length: 100 })
+    title: string;
+
+    @Column({ type: 'text' })
+    description: string;
+
+    @OneToMany(() => ResumeSkillsEntity, resumeSkill => resumeSkill.resume)
+    skills: ResumeSkillsEntity[];
+
+    @OneToMany(() => MatchEntity, match => match.resume)
+    matches: MatchEntity[];
+}
+
+
+File: core/entities/ResumeSkillsEntity.ts
+import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { ResumeEntity } from './ResumeEntity';
+import { SkillEntity } from './SkillEntity';
+
+@Entity()
+export class ResumeSkillsEntity {
+    @PrimaryGeneratedColumn()
+    resume_skill_id: number;
+
+    @ManyToOne(() => ResumeEntity, resume => resume.skills)
+    resume: ResumeEntity;
+
+    @ManyToOne(() => SkillEntity, skill => skill.users)
+    skill: SkillEntity;
+}
+
+
+
+File: core/entities/UserEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, OneToOne, JoinColumn } from 'typeorm';
+import { ResumeEntity } from './ResumeEntity';
+import { SkillEntity } from './SkillEntity';
+import { VacancyEntity } from './VacancyEntity';
+import { NotificationEntity } from './NotificationEntity';
+import { LocationEntity } from './LocationEntity';
+import { EducationEntity } from './EducationEntity';
+import { ExperienceEntity } from './ExperienceEntity';
+import { LanguageEntity } from './LanguageEntity';
+import { CertificationEntity } from './CertificationEntity';
+import { ApplicationEntity } from './ApplicationEntity';
+
+@Entity()
+export class UserEntity {
+    @PrimaryGeneratedColumn()
+    user_id: number;
+
+    @Column({ length: 20, nullable: false})
+    name: string;
+
+    @Column({ length: 20, nullable: false})
+    surname: string;
+
+    @Column({ length: 100 , unique: true, nullable: false})
+    email: string;
+
+    @Column({ length: 100, nullable: false })
+    password: string;
+
+    @OneToMany(() => ResumeEntity, resume => resume.user)
+    resumes: ResumeEntity[];
+
+    @ManyToMany(() => SkillEntity)
+    @JoinTable()
+    skills: SkillEntity[];
+
+    @OneToMany(() => VacancyEntity, vacancy => vacancy.user)
+    vacancies: VacancyEntity[];
+
+    @OneToMany(() => NotificationEntity, notification => notification.user)
+    notifications: NotificationEntity[];
+
+    @OneToOne(() => LocationEntity)
+    @JoinColumn()
+    location: LocationEntity;
+
+    @OneToOne(() => EducationEntity)
+    @JoinColumn()
+    education: EducationEntity;
+
+    @OneToOne(() => ExperienceEntity)
+    @JoinColumn()
+    experience: ExperienceEntity;
+
+    @ManyToMany(() => LanguageEntity)
+    @JoinTable()
+    languages: LanguageEntity[];
+
+    @OneToMany(() => CertificationEntity, certification => certification.user)
+    certifications: CertificationEntity[];
+
+    @OneToMany(() => ApplicationEntity, application => application.user)
+    applications: ApplicationEntity[];
+}
+
+
+
+File: core/entities/ApplicationEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { VacancyEntity } from './VacancyEntity';
+
+@Entity()
+export class ApplicationEntity {
+    @PrimaryGeneratedColumn()
+    application_id: number;
+
+    @ManyToOne(() => UserEntity, user => user.applications)
+    user: UserEntity;
+
+    @ManyToOne(() => VacancyEntity, vacancy => vacancy.applications)
+    vacancy: VacancyEntity;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    application_date: Date;
+}
+
+// напиши репозиторий сервис контроллер и роуты для навыков
+
+File: core/entities/LocationEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { UserEntity } from './UserEntity';
+import { VacancyEntity } from './VacancyEntity';
+
+@Entity()
+export class LocationEntity {
+    @PrimaryGeneratedColumn()
+    location_id: number;
+
+    @Column({ length: 100 })
+    city: string;
+
+    @Column({ length: 100 })
+    country: string;
+
+    @OneToMany(() => UserEntity, user => user.location)
+    users: UserEntity[];
+
+    @OneToMany(() => VacancyEntity, vacancy => vacancy.location)
+    vacancies: VacancyEntity[];
+}
+
+File: core/repositories/ExperienceRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { ExperienceEntity } from '../entities/ExperienceEntity';
+
+export const ExperienceRepository = AppDataSource.manager.getRepository(ExperienceEntity);
+
+
+
+File: core/repositories/NotificationTypeRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { NotificationTypeEntity } from '../entities/NotificationTypeEntity';
+
+export const NotificationTypeRepository = AppDataSource.manager.getRepository(NotificationTypeEntity);
+
+
+
+File: core/repositories/ResumeRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { ResumeEntity } from '../entities/ResumeEntity';
+
+export const ResumeRepository = AppDataSource.manager.getRepository(ResumeEntity);
+
+
+
+File: core/repositories/LanguageRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { LanguageEntity } from '../entities/LanguageEntity';
+
+export const LanguageRepository = AppDataSource.manager.getRepository(LanguageEntity);
+
+
+
+File: core/repositories/ResumeSkillsRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { ResumeSkillsEntity } from '../entities/ResumeSkillsEntity';
+
+export const ResumeSkillsRepository = AppDataSource.manager.getRepository(ResumeSkillsEntity);
+
+
+
+File: core/repositories/VacancySkillsRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { VacancySkillsEntity } from '../entities/VacancySkillsEntity';
+
+export const VacancySkillsRepository = AppDataSource.manager.getRepository(VacancySkillsEntity);
+
+
+
+File: core/repositories/CertificationRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { CertificationEntity } from '../entities/CertificationEntity';
+
+export const CertificationRepository = AppDataSource.getRepository(CertificationEntity);
+
+
+
+File: core/repositories/SkillRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { SkillEntity } from '../entities/SkillEntity';
+
+export const SkillRepository = AppDataSource.manager.getRepository(SkillEntity);
+
+
+
+File: core/repositories/VacancyRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { VacancyEntity } from '../entities/VacancyEntity';
+
+export const VacancyRepository = AppDataSource.manager.getRepository(VacancyEntity);
+
+
+
+File: core/repositories/ApplicationRepository.ts
+
+import { AppDataSource } from '../../configs/app-data-source';
+import { ApplicationEntity } from '../entities/ApplicationEntity';
+
+export const ApplicationRepository = AppDataSource.getRepository(ApplicationEntity);
+
+File: core/repositories/NotificationRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { NotificationEntity } from '../entities/NotificationEntity';
+
+export const NotificationRepository = AppDataSource.manager.getRepository(NotificationEntity);
+
+
+
+File: core/repositories/LocationRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { LocationEntity } from '../entities/LocationEntity';
+
+export const LocationRepository = AppDataSource.manager.getRepository(LocationEntity);
+
+
+
+File: core/repositories/MatchRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { MatchEntity } from '../entities/MatchEntity';
+
+export const MatchRepository = AppDataSource.manager.getRepository(MatchEntity);
+
+
+
+File: core/repositories/EducationRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { EducationEntity } from '../entities/EducationEntity';
+
+export const EducationRepository = AppDataSource.getRepository(EducationEntity);
+
+
+
+File: core/repositories/UserRepository.ts
+import { AppDataSource } from '../../configs/app-data-source';
+import { UserEntity } from "../entities/UserEntity";
+
+export const UserRepository = AppDataSource.manager.getRepository(UserEntity);
+
+
+
+File: configs/app-data-source.ts
+import "reflect-metadata"
+import { DataSource } from "typeorm"
+
+export const AppDataSource = new DataSource({
+    type: "mysql",
+    host: "localhost",
+    port: 3306,
+    username: "user_work_pimp_2",
+    password: "Qwerty123#",
+    database: "db_work_pimp_2",
+    synchronize: true,
+    logging: ["query", "error", "schema"],
+    entities: ["src/core/entities*.ts" ],
+    migrations: ["src/migration*.ts"],
+    subscribers: ["src/subscriber*.ts"],
+})
+
+File: configs/jwt-config.ts
+
+

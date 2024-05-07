@@ -1,0 +1,131 @@
+//UserEntity.ts
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, OneToOne, JoinColumn } from 'typeorm';
+import { ResumeEntity } from './ResumeEntity';
+import { SkillEntity } from './SkillEntity';
+import { VacancyEntity } from './VacancyEntity';
+import { NotificationEntity } from './NotificationEntity';
+import { LocationEntity } from './LocationEntity';
+import { EducationEntity } from './EducationEntity';
+import { ExperienceEntity } from './ExperienceEntity';
+import { LanguageEntity } from './LanguageEntity';
+import { CertificationEntity } from './CertificationEntity';
+import { ApplicationEntity } from './ApplicationEntity';
+
+@Entity()
+export class UserEntity {
+    @PrimaryGeneratedColumn()
+    user_id: number;
+
+    @Column({ length: 100 })
+    email: string;
+
+    @Column({ length: 100 })
+    password: string;
+
+    @OneToMany(() => ResumeEntity, resume => resume.user)
+    resumes: ResumeEntity[];
+
+    @ManyToMany(() => SkillEntity)
+    @JoinTable()
+    skills: SkillEntity[];
+
+    @OneToMany(() => VacancyEntity, vacancy => vacancy.user)
+    vacancies: VacancyEntity[];
+
+    @OneToMany(() => NotificationEntity, notification => notification.user)
+    notifications: NotificationEntity[];
+
+    @OneToOne(() => LocationEntity)
+    @JoinColumn()
+    location: LocationEntity;
+
+    @OneToOne(() => EducationEntity)
+    @JoinColumn()
+    education: EducationEntity;
+
+    @OneToOne(() => ExperienceEntity)
+    @JoinColumn()
+    experience: ExperienceEntity;
+
+    @ManyToMany(() => LanguageEntity)
+    @JoinTable()
+    languages: LanguageEntity[];
+
+    @OneToMany(() => CertificationEntity, certification => certification.user)
+    certifications: CertificationEntity[];
+
+    @OneToMany(() => ApplicationEntity, application => application.user)
+    applications: ApplicationEntity[];
+}
+
+// UserRepository.ts
+import { AppDataSource } from '../app-data-source';
+import { UserEntity } from "../entity/UserEntity";
+
+export const UserRepository = AppDataSource.manager.getRepository(UserEntity);
+
+import { UserRepository } from "../repositories/UserRepository";
+import { UserEntity } from "../entity/UserEntity";
+
+export class UserService {
+
+    async createUser(userData: UserEntity): Promise<UserEntity> {
+        return await UserRepository.save(userData);
+    }
+
+    async getAllUsers(): Promise<UserEntity[]> {
+        return await UserRepository.find();
+    }
+}
+
+// UserService
+import { Request, Response } from "express";
+import { UserService } from "../services/UserService";
+import { UserEntity } from "../entity/UserEntity";
+
+const userService = new UserService();
+
+export const createUser = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const newUser = await userService.createUser(req.body as UserEntity);
+        res.status(201).json(newUser);
+    } catch (error) {
+        if (error.code === 'ER_DUP_ENTRY') {
+            console.error('Ошибка при создании пользователя:');
+            res.status(400).json({ error: 'Пользователь с таким email уже существует' });
+        } else {
+            console.error('Ошибка при создании пользователя:');
+            res.status(500).json({ error: 'Ошибка при создании пользователя' });
+        }
+    }
+};
+
+export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const users = await userService.getAllUsers();
+        res.json(users);
+    } catch (error) {
+        console.error('Ошибка при получении пользователей:', error);
+        res.status(500).json({ error: 'Ошибка при получении пользователей' });
+    }
+};
+
+// UserRouter.ts
+import express from 'express';
+import {  createUser, getAllUsers } from '../controllers/UserController';
+
+const UserRouter = express.Router();
+
+UserRouter.post('/create', createUser);
+
+UserRouter.post('/get_all', getAllUsers);
+
+export default UserRouter;
+
+// это шаблон для тебя для того чтоб ты знал как сейчас надо использовать библиотеку
+// те методы которые ты мне предлагаешь сегодня считаются устаревшими
+
+
+
+
+

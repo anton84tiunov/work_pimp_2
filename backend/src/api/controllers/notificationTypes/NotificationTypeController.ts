@@ -10,7 +10,7 @@ export const getAllNotificationTypes = async (req: Request, res: Response) => {
     const notificationTypes = await notificationTypeService.getAllNotificationTypes();
     res.status(200).json(notificationTypes);
   } catch (error) {
-    logger.error('Error getting notification types:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to get notification types' });
   }
 };
@@ -21,7 +21,7 @@ export const createNotificationType = async (req: Request, res: Response) => {
     const newNotificationType = await notificationTypeService.createNotificationType(notificationTypeData);
     res.status(201).json(newNotificationType);
   } catch (error) {
-    logger.error('Error creating notification type:', error);
+    logger.error(error);
     res.status(500).json({ error: 'Failed to create notification type' });
   }
 };

@@ -11,8 +11,7 @@ export const createResume = async (req: Request, res: Response): Promise<void> =
         const newResume = await resumeService.createResume(newResumeData);
         res.json(newResume);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при создании совпадения:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при создании совпадения' });
     }
 }
@@ -23,8 +22,7 @@ export const getAllResume = async (req: Request, res: Response): Promise<void> =
         const resume = await resumeService.findAllResumes();
         res.json(resume);
     } catch (error) {
-        logger.error(error.stack);
-        console.error('Ошибка при получении совпадений:', error);
+        logger.error(error);
         res.status(500).json({ error: 'Ошибка при получении совпадений' });
     }
 }

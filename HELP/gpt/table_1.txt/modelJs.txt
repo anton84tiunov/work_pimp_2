@@ -1,0 +1,470 @@
+// Импортируем необходимые модули TypeORM
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
+
+// Определяем перечисление для ролей пользователя
+export enum UserRole {
+  APPLICANT = 'APPLICANT',
+  EMPLOYER = 'EMPLOYER',
+  ADMIN = 'ADMIN',
+}
+
+// Определяем перечисление для статуса отклика
+export enum ApplicationStatus {
+  PENDING = 'PENDING',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED',
+}
+
+// Определяем перечисление для типа занятости
+export enum EmploymentType {
+  FULL_TIME = 'FULL_TIME',
+  PART_TIME = 'PART_TIME',
+  REMOTE = 'REMOTE',
+  // Добавьте другие типы занятости по необходимости
+}
+
+// Определяем перечисление для типов токенов
+export enum TokenType {
+  PASSWORD_RESET = 'PASSWORD_RESET',
+  EMAIL_CONFIRMATION = 'EMAIL_CONFIRMATION',
+  // Добавьте другие типы токенов по необходимости
+}
+
+// Определяем перечисление для типов уведомлений
+export enum NotificationType {
+  NEW_JOBS = 'NEW_JOBS',
+  NEW_APPLICATIONS = 'NEW_APPLICATIONS',
+  // Добавьте другие типы уведомлений по необходимости
+}
+
+// Определяем перечисление для уровней опыта работы
+export enum ExperienceLevel {
+  INTERN = 'INTERN',
+  JUNIOR = 'JUNIOR',
+  MID = 'MID',
+  SENIOR = 'SENIOR',
+  // Добавьте другие уровни опыта работы по необходимости
+}
+
+// Определяем перечисление для уровней образования
+export enum EducationLevel {
+  HIGH_SCHOOL = 'HIGH_SCHOOL',
+  BACHELOR = 'BACHELOR',
+  MASTER = 'MASTER',
+  // Добавьте другие уровни образования по необходимости
+}
+
+// Сущность Пользователь
+@Entity()
+export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column()
+  password: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.APPLICANT,
+  })
+  role: UserRole;
+
+  @OneToOne(() => Resume, resume => resume.user)
+  @JoinColumn()
+  resume: Resume;
+
+  @OneToMany(() => Application, application => application.user)
+  applications: Application[];
+
+  @ManyToMany(() => Job, job => job.savedByUsers)
+  @JoinTable()
+  savedJobs: Job[];
+
+  @ManyToMany(() => Subscription, subscription => subscription.users)
+  @JoinTable()
+  subscriptions: Subscription[];
+
+  @Column()
+  avatar: string;
+
+  @OneToMany(() => Token, token => token.user)
+  tokens: Token[];
+
+  @OneToOne(() => UserSettings, userSettings => userSettings.user)
+  @JoinColumn()
+  settings: UserSettings;
+}
+
+// Сущность НастройкиПользователя
+@Entity()
+export class UserSettings {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @OneToOne(() => User, user => user.settings)
+  user: User;
+
+  @Column('text', { array: true })
+  languages: string[];
+
+  @Column()
+  theme: string;
+
+  @OneToMany(() => NotificationSetting, notificationSetting => notificationSetting.userSettings)
+  notifications: NotificationSetting[];
+}
+
+// Сущность НастройкаУведомления
+@Entity()
+export class NotificationSetting {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => UserSettings, userSettings => userSettings.notifications)
+  @JoinColumn()
+  userSettings: UserSettings;
+
+  @Column({
+    type: 'enum',
+    enum: NotificationType,
+    default: NotificationType.NEW_JOBS,
+  })
+  type: NotificationType;
+
+  @Column({ default: true })
+  enabled: boolean;
+}
+
+// Сущность Токен
+@Entity()
+export class Token {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => User, user => user.tokens)
+  @JoinColumn()
+  user: User;
+
+  @Column()
+  token: string;
+
+  @Column({ type: 'date' })
+  expiresAt: Date;
+
+  @Column({
+    type: 'enum',
+    enum: TokenType,
+    default: TokenType.PASSWORD_RESET,
+  })
+  type: TokenType;
+}
+
+// Сущность Резюме
+@Entity()
+export class Resume {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @OneToOne(() => User, user => user.resume)
+  user: User;
+
+  @OneToMany(() => Experience, experience => experience.resume, { cascade: true })
+  experience: Experience[];
+
+  @OneToMany(() => Education, education => education.resume, { cascade: true })
+  education: Education[];
+
+  @Column('text', { array: true })
+  skills: string[];
+
+  @Column({ type: 'float' })
+  expectedSalary: number;
+
+  @Column()
+  photo: string;
+}
+
+// Сущность Опыт
+@Entity()
+export class Experience {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  position: string;
+
+  @Column()
+  company: string;
+
+  @Column({ type: 'date' })
+  startDate: Date;
+
+  @Column({ type: 'date', nullable: true })
+  endDate: Date | null;
+
+  @Column()
+  description: string;
+
+  @ManyToOne(() => Resume, resume => resume.experience)
+  @JoinColumn()
+  resume: Resume;
+}
+
+// Сущность Образование
+@Entity()
+export class Education {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  institution: string;
+
+  @Column()
+  degree: string;
+
+  @Column({ type: 'date' })
+  startDate: Date;
+
+  @Column({ type: 'date' })
+  endDate: Date;
+
+  @Column()
+  description: string;
+
+  @ManyToOne(() => Resume, resume => resume.education)
+  @JoinColumn()
+  resume: Resume;
+}
+
+// Сущность Отрасль
+@Entity()
+export class Industry {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  description: string;
+
+  @OneToMany(() => Company, company => company.industry)
+  companies: Company[];
+}
+
+// Сущность Компания
+@Entity()
+export class Company {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  description: string;
+
+  @Column()
+  address: string;
+
+  @OneToMany(() => Job, job => job.company)
+  jobs: Job[];
+
+  @OneToMany(() => Review, review => review.company)
+  reviews: Review[];
+
+  @Column()
+  logo: string;
+
+  @ManyToMany(() => User, user => user.companies)
+  @JoinTable()
+  users: User[];
+
+  @ManyToOne(() => Industry, industry => industry.companies)
+  @JoinColumn()
+  industry: Industry;
+}
+
+// Сущность Категория
+@Entity()
+export class Category {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  description: string;
+
+  @OneToMany(() => Job, job => job.category)
+  jobs: Job[];
+
+  @OneToMany(() => Category, category => category.parentCategory)
+  subcategories: Category[];
+
+  @ManyToOne(() => Category, category => category.subcategories)
+  @JoinColumn()
+  parentCategory: Category | null;
+
+  @ManyToMany(() => Subscription, subscription => subscription.categories)
+  @JoinTable()
+  subscriptions: Subscription[];
+}
+
+// Сущность Вакансия
+@Entity()
+export class Job {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  title: string;
+
+  @Column()
+  description: string;
+
+  @Column('text', { array: true })
+  requirements: string[];
+
+  @Column({ type: 'float' })
+  salary: number;
+
+  @ManyToOne(() => Company, company => company.jobs)
+  @JoinColumn()
+  company: Company;
+
+  @OneToMany(() => Application, application => application.job)
+  applications: Application[];
+
+  @ManyToMany(() => User, user => user.savedJobs)
+  @JoinTable()
+  savedByUsers: User[];
+
+  @Column({
+    type: 'enum',
+    enum: EmploymentType,
+    default: EmploymentType.FULL_TIME,
+  })
+  employmentType: EmploymentType;
+
+  @Column()
+  location: string;
+
+  @ManyToOne(() => Category, category => category.jobs)
+  @JoinColumn()
+  category: Category;
+
+  @Column('text', { array: true })
+  skills: string[];
+
+  @Column({
+    type: 'enum',
+    enum: ExperienceLevel,
+    default: ExperienceLevel.JUNIOR,
+  })
+  experienceLevel: ExperienceLevel;
+
+  @Column({
+    type: 'enum',
+    enum: EducationLevel,
+    default: EducationLevel.BACHELOR,
+  })
+  educationLevel: EducationLevel;
+}
+
+// Сущность Отклик
+@Entity()
+export class Application {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => User, user => user.applications)
+  @JoinColumn()
+  user: User;
+
+  @ManyToOne(() => Job, job => job.applications)
+  @JoinColumn()
+  job: Job;
+
+  @Column({
+    type: 'enum',
+    enum: ApplicationStatus,
+    default: ApplicationStatus.PENDING,
+  })
+  status: ApplicationStatus;
+
+  @Column({ type: 'date' })
+  appliedAt: Date;
+
+  @Column()
+  coverLetter: string;
+}
+
+// Сущность Отзыв
+@Entity()
+export class Review {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => Company, company => company.reviews)
+  @JoinColumn()
+  company: Company;
+
+  @ManyToOne(() => User, user => user.reviews)
+  @JoinColumn()
+  user: User;
+
+  @Column({ type: 'float' })
+  rating: number;
+
+  @Column()
+  comment: string;
+
+  @Column({ type: 'date' })
+  reviewedAt: Date;
+
+  @Column({ default: false })
+  anonymous: boolean;
+}
+
+// Сущность Подписка
+@Entity()
+export class Subscription {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToMany(() => User, user => user.subscriptions)
+  @JoinTable()
+  users: User[];
+
+  @Column('text', { array: true })
+  keywords: string[];
+
+  @Column()
+  location: string;
+
+  @Column({
+    type: 'enum',
+    enum: EmploymentType,
+    default: EmploymentType.FULL_TIME,
+  })
+  employmentType: EmploymentType;
+
+  @ManyToMany(() => Category, category => category.subscriptions)
+  @JoinTable()
+  categories: Category[];
+
+  @Column({ default: true })
+  active: boolean;
+}

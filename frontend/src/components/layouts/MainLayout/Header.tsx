@@ -7,6 +7,8 @@ const Header: React.FC = () => {
     { path: "/", label: "Home" },
     { path: "/profile", label: "Profile" },
     { path: "/todos", label: "Todo" },
+    { path: "/registration", label: "reg" },
+    { path: "/authorize", label: "authe" },
   ];
 
   return (

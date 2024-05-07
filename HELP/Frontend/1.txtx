@@ -1,0 +1,46 @@
+Для создания клиентской части приложения на React, вы можете использовать следующую структуру проекта:
+
+Copy code
+Insert code
+client/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Header.js
+│   │   │   ├── Footer.js
+│   │   │   └── ...
+│   │   ├── pages/
+│   │   │   ├── Home.js
+│   │   │   ├── Login.js
+│   │   │   ├── Register.js
+│   │   │   ├── Profile.js
+│   │   │   ├── Resumes.js
+│   │   │   ├── Vacancies.js
+│   │   │   ├── Applications.js
+│   │   │   └── ...
+│   │   └── ...
+│   ├── services/
+│   │   ├── api.js
+│   │   ├── authService.js
+│   │   ├── resumeService.js
+│   │   ├── vacancyService.js
+│   │   └── ...
+│   ├── utils/
+│   │   ├── constants.js
+│   │   ├── helpers.js
+│   │   └── ...
+│   ├── contexts/
+│   │   ├── AuthContext.js
+│   │   └── ...
+│   ├── hooks/
+│   │   ├── useAuth.js
+│   │   └── ...
+│   ├── styles/
+│   │   ├── global.css
+│   │   └── ...
+│   ├── App.js
+│   ├─

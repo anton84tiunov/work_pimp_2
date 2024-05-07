@@ -1,16 +1,14 @@
 // ApplicationService.ts
 import logger from '../../../utils/logger';
 import { ApplicationEntity } from '../../entities/ApplicationEntity';
-import { ApplicationRepository } from '../../repositories/applications/ApplicationRepository';
+import { ApplicationRepository } from '../../repositories/ApplicationRepository';
 
 export class ApplicationService {
   async createApplication(applicationData: ApplicationEntity): Promise<ApplicationEntity> {
     try {
       return await ApplicationRepository.save(applicationData);
     } catch (error) {
-      logger.error(error.stack);
-      console.error('Error creating application:', error);
-      throw new Error('Failed to create application');
+      throw error;
     }
   }
 
@@ -18,9 +16,7 @@ export class ApplicationService {
     try {
       return await ApplicationRepository.find({ relations: ['user', 'vacancy'] });
     } catch (error) {
-      logger.error(error.stack);
-      console.error('Error getting all applications:', error);
-      throw new Error('Failed to get all applications');
+      throw error;
     }
   }
 

@@ -1,6 +1,6 @@
 import logger from '../../../utils/logger';
 import { CertificationEntity } from '../../entities/CertificationEntity';
-import { CertificationRepository } from '../../repositories/certifications/CertificationRepository';
+import { CertificationRepository } from '../../repositories/CertificationRepository';
 
 
 export class CertificationService{
@@ -8,9 +8,7 @@ export class CertificationService{
         try {
           return await CertificationRepository.save(certificationData);
         } catch (error) {
-          logger.error(error.stack);
-          console.error('Error creating certification:', error);
-          throw new Error('Failed to create certification');
+          throw error;
         }
   
     }
@@ -19,9 +17,7 @@ export class CertificationService{
         try {
           return await CertificationRepository.find({ relations: ['user'] });
         } catch (error) {
-          logger.error(error.stack);
-          console.error('Error getting all certifications:', error);
-          throw new Error('Failed to get all certifications');
+          throw error;
         }
     }
 }

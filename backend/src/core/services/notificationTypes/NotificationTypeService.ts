@@ -1,15 +1,13 @@
 import logger from '../../../utils/logger';
 import { NotificationTypeEntity } from '../../entities/NotificationTypeEntity';
-import { NotificationTypeRepository } from '../../repositories/notificationTypes/NotificationTypeRepository';
+import { NotificationTypeRepository } from '../../repositories/NotificationTypeRepository';
 
 export class NotificationTypeService{
     async createNotificationType(notificationTypeData: NotificationTypeEntity): Promise<NotificationTypeEntity> {
         try {
           return await NotificationTypeRepository.save(notificationTypeData);
         } catch (error) {
-          logger.error(error.stack);
-          console.error('Error creating notification type:', error);
-          throw new Error('Failed to create notification type');
+          throw error;
         }
     }
 
@@ -17,9 +15,7 @@ export class NotificationTypeService{
         try {
           return await NotificationTypeRepository.find({ relations: ['notifications'] });
         } catch (error) {
-          logger.error(error.stack);
-          console.error('Error getting all notification types:', error);
-          throw new Error('Failed to get all notification types');
+          throw error;
         }
     }
 

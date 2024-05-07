@@ -1,63 +1,64 @@
 import React, { useState } from "react";
-import { Table, Caption, Tr, Td, Span, Input, Button, Div } from "../../common";
-import { addProfile } from "../../../redux/reducers/profilesSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import Tbody from "../../common/table/tbody/Tbody";
+import {
+  Tbody,
+  Table,
+  Caption,
+  Tr,
+  Td,
+  Span,
+  Input,
+  Button,
+  Div,
+} from "../../common";
 import axios from "axios";
 
 const RegistrationForm: React.FC = () => {
-  const dispatch = useDispatch();
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const newProfile = useSelector(
-    (state: RootState) => state.profiles.newProfile
-  );
-
   const handleAddProfile = async () => {
-    // const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;&& emailRegex.test(email)
     if (name && surname && email && password) {
-      const updatedProfile = {
-        ...newProfile,
-        name,
-        surname,
-        email,
-        password,
-      };
-
       try {
         const response = await axios.post(
           "http://localhost:5000/api/users/create",
           {
-            name: name,
-            surname: surname,
-            email: email,
-            password: password,
+            name,
+            surname,
+            email,
+            password,
           }
         );
-
+        const userData = {
+          name,
+          surname,
+          email,
+          password,
+        };
+        localStorage.setItem("userData", JSON.stringify(userData));
         console.log("Profile added:", response.data);
       } catch (error: any) {
-        // Приводим тип error к типу Error, чтобы избежать ошибки компиляции
-        const typedError = error as Error;
-
-        // Теперь можно обращаться к свойствам типа Error без ошибок компиляции
-        console.log(typedError.message);
-        console.log(typedError.stack);
-        // Другие действия с объектом типа Error
+        console.log(error);
       }
-      dispatch(addProfile(updatedProfile));
-      // setName("");
-      // setSurname("");
-      // setEmail("");
-      // setPassword("");
-      // setEmailError("");
-      // } else if (!emailRegex.test(email)) {
-      //   setEmailError('Неверный формат электронной почты');
+    }
+  };
+
+  const setLocalUser = () => {
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    alert("Данные сохранены в localStorage");
+  };
+
+  const getLocalUser = () => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+      // Доступ к свойствам данных пользователя
+      console.log("Имя:", userData.name);
+      console.log("Фамилия:", userData.surname);
+      console.log("Электронная почта:", userData.email);
+      console.log("Пароль:", userData.password);
     }
   };
 
@@ -122,53 +123,15 @@ const RegistrationForm: React.FC = () => {
           </Tr>
         </Tbody>
       </Table>
-      <Button onClick={handleAddProfile}>Add</Button>
+      <Button onClick={handleAddProfile}>submit</Button>
+      <br />
+      <Button onClick={setLocalUser}>Set Local User</Button>
+      <br />
+      <Button onClick={getLocalUser}>Get Local User</Button>
+      <br />
+      <Button onClick={() => localStorage.clear()}>Clear Local Storage</Button>
     </Div>
   );
 };
 
 export default RegistrationForm;
-
-// @PrimaryGeneratedColumn()
-//     user_id: number;
-
-//     @Column({ length: 100 , unique: true})
-//     email: string;
-
-//     @Column({ length: 100 })
-//     password: string;
-
-//     @OneToMany(() => ResumeEntity, resume => resume.user)
-//     resumes: ResumeEntity[];
-
-//     @ManyToMany(() => SkillEntity)
-//     @JoinTable()
-//     skills: SkillEntity[];
-
-//     @OneToMany(() => VacancyEntity, vacancy => vacancy.user)
-//     vacancies: VacancyEntity[];
-
-//     @OneToMany(() => NotificationEntity, notification => notification.user)
-//     notifications: NotificationEntity[];
-
-//     @OneToOne(() => LocationEntity)
-//     @JoinColumn()
-//     location: LocationEntity;
-
-//     @OneToOne(() => EducationEntity)
-//     @JoinColumn()
-//     education: EducationEntity;
-
-//     @OneToOne(() => ExperienceEntity)
-//     @JoinColumn()
-//     experience: ExperienceEntity;
-
-//     @ManyToMany(() => LanguageEntity)
-//     @JoinTable()
-//     languages: LanguageEntity[];
-
-//     @OneToMany(() => CertificationEntity, certification => certification.user)
-//     certifications: CertificationEntity[];
-
-//     @OneToMany(() => ApplicationEntity, application => application.user)
-//     applications: ApplicationEntity[];

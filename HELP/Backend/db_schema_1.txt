@@ -1,0 +1,180 @@
+
+Для реализации автоматического уведомления об совпадениях между работниками и вакансиями в базе данных для сайта поиска работы можно использовать следующие таблицы:
+
+Таблица Пользователей (Users):
+sql
+Copy code
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_employer BOOLEAN DEFAULT FALSE
+);
+Примечание:
+
+user_id: Уникальный идентификатор пользователя.
+username: Имя пользователя.
+email: Email пользователя (уникальное поле).
+password_hash: Хэш пароля пользователя.
+registration_date: Дата регистрации пользователя.
+is_employer: Флаг, указывающий, является ли пользователь работодателем.
+Таблица Резюме (Resumes):
+sql
+Copy code
+CREATE TABLE Resumes (
+    resume_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    desired_job_title VARCHAR(255) NOT NULL,
+    summary TEXT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+Примечание:
+
+resume_id: Уникальный идентификатор резюме.
+user_id: Идентификатор пользователя, связанный с резюме.
+desired_job_title: Желаемая должность в резюме.
+summary: Описание резюме.
+Таблица Вакансий (Vacancies):
+sql
+Copy code
+CREATE TABLE Vacancies (
+    vacancy_id INT PRIMARY KEY AUTO_INCREMENT,
+    employer_id INT,
+    job_title VARCHAR(255) NOT NULL,
+    description TEXT,
+    location VARCHAR(255),
+    salary DECIMAL(10, 2),
+    date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (employer_id) REFERENCES Users(user_id)
+);
+Примечание:
+
+vacancy_id: Уникальный идентификатор вакансии.
+employer_id: Идентификатор работодателя, связанный с вакансией.
+job_title: Название вакансии.
+description: Описание вакансии.
+location: Местоположение вакансии.
+salary: Заработная плата.
+date_posted: Дата размещения вакансии.
+Таблица Навыков (Skills):
+sql
+Copy code
+CREATE TABLE Skills (
+    skill_id INT PRIMARY KEY AUTO_INCREMENT,
+    skill_name VARCHAR(255) UNIQUE NOT NULL
+);
+Примечание:
+
+skill_id: Уникальный идентификатор навыка.
+skill_name: Название навыка (уникальное поле).
+Таблица, Связывающая Резюме с Навыками (ResumeSkills):
+sql
+Copy code
+CREATE TABLE ResumeSkills (
+    resume_skill_id INT PRIMARY KEY AUTO_INCREMENT,
+    resume_id INT,
+    skill_id INT,
+    FOREIGN KEY (resume_id) REFERENCES Resumes(resume_id),
+    FOREIGN KEY (skill_id) REFERENCES Skills(skill_id)
+);
+Примечание:
+
+resume_skill_id: Уникальный идентификатор связи резюме с навыком.
+resume_id: Идентификатор резюме.
+skill_id: Идентификатор навыка.
+Таблица, Связывающая Вакансии с Навыками (VacancySkills):
+sql
+Copy code
+CREATE TABLE VacancySkills (
+    vacancy_skill_id INT PRIMARY KEY AUTO_INCREMENT,
+    vacancy_id INT,
+    skill_id INT,
+    FOREIGN KEY (vacancy_id) REFERENCES Vacancies(vacancy_id),
+    FOREIGN KEY (skill_id) REFERENCES Skills(skill_id)
+);
+Примечание:
+
+vacancy_skill_id: Уникальный идентификатор связи вакансии с навыком.
+vacancy_id: Идентификатор вакансии.
+skill_id: Идентификатор навыка.
+Таблица Совпадений (Matches):
+sql
+Copy code
+CREATE TABLE Matches (
+    match_id INT PRIMARY KEY AUTO_INCREMENT,
+    resume_id INT,
+    vacancy_id INT,
+    match_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (resume_id) REFERENCES Resumes(resume_id),
+    FOREIGN KEY (vacancy_id) REFERENCES Vacancies(vacancy_id)
+);
+Примечание:
+
+match_id: Уникальный идентификатор совпадения.
+resume_id: Идентификатор резюме, связанный с совпадением.
+vacancy_id: Идентификатор вакансии, связанный с совпадением.
+match_date: Дата создания совпадения.
+
+
+Таблица Уведомлений (Notifications):
+Эта таблица будет хранить информацию о созданных уведомлениях для пользователей.
+sql
+Copy code
+CREATE TABLE Notifications (
+    notification_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    message TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_read BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+В этой таблице notification_id - уникальный идентификатор уведомления, user_id - идентификатор пользователя, которому предназначено уведомление, message - текст уведомления, created_at - дата создания уведомления, is_read - флаг, указывающий, прочитано ли уведомление.
+
+
+Эти таблицы позволят отслеживать связи между пользователями (кандидатами) и вакансиями на основе навыков, предоставленных в их резюме и объявлениях о вакансиях. Таблица Matches будет использоваться для регистрации совпадений между резюме и вакансиями, и она может быть основой для реализации автоматических уведомлений об обнаруженных совпадениях.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Схема работы сайта для поиска работы и вакансий может быть организована следующим образом:
+
+Регистрация и Аутентификация Пользователей:
+Пользователи регистрируются на сайте, предоставляя свои данные (имя, электронная почта, пароль).
+Для безопасности пароли пользователей хранятся в хешированном виде.
+После регистрации пользователи могут входить на сайт с использованием своих учетных данных.
+Создание Резюме:
+Зарегистрированные пользователи могут создавать свои резюме, указывая желаемую должность, краткое описание, навыки и другие детали.
+Резюме ассоциируется с профилем пользователя через идентификатор пользователя (user_id).
+Публикация Вакансий:
+Работодатели могут создавать объявления о вакансиях, устанавливая название должности, описание работы, требования к навыкам, расположение и зарплату.
+Вакансии также ассоциируются с профилем пользователя через идентификатор пользователя (user_id).
+Управление Навыками:
+Навыки (skills) хранятся в отдельной таблице и могут быть использованы как для резюме, так и для вакансий.
+Пользователи указывают свои навыки при создании резюме, а работодатели уточняют требуемые навыки при создании вакансий.
+Автоматический поиск и Оповещения:
+Система регулярно анализирует совпадения между навыками, указанными в резюме, и навыками, требуемыми в вакансиях.
+При обнаружении совпадений создаются записи в таблице Matches, отражающие связь между резюме и вакансиями.
+Пользователи могут получать уведомления (например, по электронной почте) о найденных совпадениях между их резюме и активными вакансиями.
+Просмотр и Кандидатура:
+Пользователи могут просматривать список активных вакансий и откликаться на них, отправляя свои резюме работодателям.
+Работодатели могут просматривать резюме кандидатов и приглашать подходящих кандидатов на собеседование.
+Управление Профилями:
+Пользователи могут редактировать свои профили, обновлять информацию в резюме и управлять своими уведомлениями.
+Работодатели могут изменять информацию о вакансиях и управлять откликами от кандидатов.
+Это общая схема работы сайта, охватывающая основные функции, такие как регистрация, создание резюме, публикация вакансий, автоматический поиск совпадений и управление профилями пользователей. Конечно, реализация может быть дополнена или изменена в зависимости от конкретных потребностей и особенностей проекта.

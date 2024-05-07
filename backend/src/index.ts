@@ -5,7 +5,7 @@ import cors from 'cors';
 import compression from 'compression';
 import morgan from 'morgan';
 import { AppDataSource } from './configs/app-data-source';
-import MainRouter from './MainRouter'; // Исправленный импорт
+import MainRouter from './api/routes/MainRouter'; // Исправленный импорт
 import logger from './utils/logger';
 import errorHandler from "./utils/errorHandler";
 
