@@ -77,9 +77,10 @@ export const authenticateUser = async (req: Request, res: Response): Promise<voi
                 // secure: true,   // Кука будет отправляться только по HTTPS
                 sameSite: 'strict' // Определяет, должна ли кука отправляться только в рамках первой партии
               });
+
               console.log(res.cookie.length);
             
-              res.send('Login successful');
+              res.send('Login  successful');
         }
 
         

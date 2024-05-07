@@ -181,3 +181,5 @@
 2024-05-07T19:07:36.464Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 error: Cannot read properties of undefined (reading 'accessToken')
 2024-05-07T19:13:06.127Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
 2024-05-07T19:15:23.555Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:33:22.915Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
+2024-05-07T19:33:35.001Z [site-service] /home/anton/my_projects/NODE_JS/TS/TESTS/work_pimp_2/backend/src/utils/logger.ts:34 info: Источник данных успешно инициализирован
